@@ -1,0 +1,75 @@
+{
+  "id": "carole",
+  "copyright": "Copyright © 2021 [Carole Thomas]. All Rights Reserved.",
+  "covers": "carole",
+  "navbarheader": "caroleNavbarHeader.html",
+  "brandlink": "https://www.instagram.com/k.rolerolle/",
+  "icon": "svgs/instagram.svg",
+  "animated_background": false,
+  "order": [
+    "evasion",
+    "maison",
+    "promenade",
+    "cambodge",
+    "bretagne",
+    "banlieue",
+    "fred",
+    "sans_titre",
+    "roseraie",
+    "garceon",
+    "humeur",
+    "eplucher"
+  ],
+  "songs": {
+    "evasion": {
+      "text": "Envie d'évasion, heureusement qu'il y a la peinture pour partir à la mer",
+      "link": "https://www.instagram.com/p/CKg-Skxn6E-/"
+    },
+    "maison": {
+      "link": "https://www.instagram.com/p/CKVpX-knJ4G/"
+    },
+    "promenade": {
+      "text": "Promenade sur les coteaux de Champagne",
+      "link": "https://www.instagram.com/p/CKO9JlGnhC3/"
+    },
+    "cambodge": {
+      "text": "Encore le Cambodge : besoin d'horizon",
+      "link": "https://www.instagram.com/p/CJyb_c4n4T1/"
+    },
+    "bretagne": {
+      "text": "Vive la Bretagne",
+      "link": "https://www.instagram.com/p/CJ1UEidHPr3/"
+    },
+    "banlieue": {
+      "text": "Un petit coin de banlieue en plein ciel. J'aime bien mes petites balades de confinement 😃",
+      "link": "https://www.instagram.com/p/CHkCGuYHTaw/"
+    },
+    "fred": {
+      "text": "D'après une photo de Fred",
+      "link": "https://www.instagram.com/p/CHbIQjgnRDQ/"
+    },
+    "sans_titre": {
+      "link": "https://www.instagram.com/p/CG-hVNvnLFj/"
+    },
+    "roseraie": {
+      "text": "Parc de la Roseraie - Croquis aquarellé",
+      "link": "https://www.instagram.com/p/CGyItWKnbFT/"
+    },
+    "garceon": {
+      "text": "Garçon de Café désœuvré",
+      "link": "https://www.instagram.com/p/CGhAs1znlUh/"
+    },
+    "humeur": {
+      "text": "Humeur du jour : Paris n'est pas une fête 😷",
+      "link": "https://www.instagram.com/p/CGefNFoHJb6/"
+    },
+    "eplucher": {
+      "text": "No comment !",
+      "link": "https://www.instagram.com/p/CHIZhwYHr9n/"
+    },
+    "qwe": {
+      "text": "asd",
+      "link": ""
+    }
+  }
+}

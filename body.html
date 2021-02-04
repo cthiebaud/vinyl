@@ -1,0 +1,124 @@
+<header>
+  <!-- style="display:none;" -->
+  <div class="bg-dark collapse" id="navbarHeader">
+  </div>
+  <div class="navbar navbar-dark bg-dark shadow-sm">
+    <div class="container">
+      <a id="vinyl_brand" class="navbar-brand d-flex align-items-center" style="margin-right:.5rem;" title="Vinyl Title">
+        <!-- href="/vinyl/showdown.html?Mugnier&Thiebaud.md" target="_mugnier_et_thiebaud" -->
+        <img src="svgs/vinyl_icon.svg" style="width:30px; height: 30px;">
+      </a>
+      <a id="vinyl_share" class="btn" type="button" href="#" target="_facebook" title="Share on Facebook ...">
+        <img src="svgs/share.svg" style="width:30px; height: 30px;">
+      </a>
+      <button id="shuffle_button" class="btn" type="button">
+        <img src="svgs/shuffle.svg" style="width:30px; height: 30px;" title="Shuffle Cards">
+      </button>
+      <button id="start_pause_button" class="btn" type="button">
+        <img src="svgs/play.svg" style="width:30px; height: 30px;" title="Start / Stop Vinyl in Background">
+      </button>
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false"
+        aria-label="Toggle navigation" title="Display Info">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <div class="album py-5">
+    <div class="container">
+      <div id="songs" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer class="text-muted py-3">
+  <!-- style="display:none;" -->
+  <div class="container">
+    <p id="copyright" class="float-end mb-1" style="font-family:'Courier New', Courier, monospace"></p>
+  </div>
+</footer>
+
+<script id="style-template" type="text/x-handlebars-template">
+  <style>
+    @media (min-width: 768px) {
+      #vinyl_brand::after {
+        content: "{{{this}}}";
+        font-size: 14pt;
+        margin-left: .5rem;
+      }
+    }
+  </style>
+</script>
+
+<script id="vid-template" type="text/x-handlebars-template">
+  <iframe 
+    id="yt-widget" 
+    src="https://www.youtube.com/embed/{{id}}?controls=0&autoplay=1"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+  </iframe>
+</script>
+
+<script id="sound-template" type="text/x-handlebars-template">
+  <iframe 
+    id="sc-widget" 
+    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{id}}&auto_play=true&buying=false&liking=true&download=false&sharing=false&show_artwork=true&show_comments=false&show_playcount=false&show_user=true&hide_related=true&visual=true&callback=true">
+  </iframe>
+</script>
+
+<script id="markdown-template" type="text/x-handlebars-template">
+  <iframe 
+    id="tx-widget" 
+    src="showdown_dark.html?./texts/{{id}}.md">
+  </iframe>
+</script>
+
+<script id="url-template" type="text/x-handlebars-template">
+  <iframe 
+    id="bs-widget" 
+    src="{{id}}">
+  </iframe>
+</script>
+
+<script id="instagram-template" type="text/x-handlebars-template">
+  <iframe 
+    id="insta-widget" 
+    src="showdown.html?./instagrams/{{id}}.md">
+  </iframe>
+</script>
+
+<script id="song-template" type="text/x-handlebars-template">
+  <div id="{{key}}_" class="col" style="opacity: 0.0;">
+    <div id="{{key}}" class="card shadow-sm bg-secondary" style="position: relative;">
+      <img class="img-fluid" src="./{{covers}}/{{cover}}" data-url="{{val.link}}" alt="">
+
+      <div class="card-body text-light bg-dark"><!-- style="display:none;" -->
+        <p class="card-text" style="font-size: smaller;">{{val.text}}</p>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="btn-group">
+            {{#each val.watch}}
+            <a type="button" id="watch_{{id}}" title="{{title}}" class="vid btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="watch">watch</a>
+            {{/each}}
+            {{#each val.listen}}
+            <a type="button" id="listen_{{id}}" title="{{title}}" class="sound btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="listen">listen</a>
+            {{/each}}
+            {{#if val.markdown}}
+            <a type="button" id="read_{{key}}" class="markdown btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="read">read</a>
+            {{/if}}
+            {{#if val.url}}
+            <a type="button" id="url{{key}}" class="url btn btn-sm btn-outline-secondary" data-id="{{val.url}}" data-text="mise en abyme">mise en abyme</a>
+            {{/if}}
+            {{#if val.instagram}}
+            <a type="button" id="url{{key}}" class="instagram btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="insta">insta</a>
+            {{/if}}
+          </div>
+          <span class="text-muted" style="font-family:'Courier New', Courier, monospace">{{{val.duration}}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>

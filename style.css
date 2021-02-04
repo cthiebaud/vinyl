@@ -1,0 +1,47 @@
+@font-face {
+  font-family: "baskerville";
+  src: url("fonts/LibreBaskerville-Regular.woff") format("woff");
+}
+
+html {
+  height: 100%;
+  width: 100%;
+  /* background: url(./svgs/vinyl.svg) no-repeat center center;
+      background-size: contain; */
+  background-color: #21252c !important;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: transparent !important;
+  font-family: "baskerville";
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.card img {
+  cursor: pointer;
+}
+
+.navbar [type="button"] {
+  padding: 0.25rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.25rem;
+}
+
+header .list-unstyled a {
+  text-decoration: none;
+}
+
+header .list-unstyled li {
+  font-size: smaller;
+}
+
+header .list-unstyled img {
+  width: 18px;
+  height: 18px;
+  margin-right: 0.3rem;
+}
