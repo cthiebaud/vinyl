@@ -4,7 +4,7 @@ import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
 
 $(document).ready(function () {
   // fetch body
-  $.get("body.html").done(function (body) {
+  $.get("/vinyl/body.html").done(function (body) {
     $("body").append(body);
 
     const canonical = encodeURI($('head link[rel="canonical"]').attr("href"));
