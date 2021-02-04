@@ -4,7 +4,7 @@
   "covers": "carole",
   "navbarheader": "caroleNavbarHeader.html",
   "brandlink": "https://www.instagram.com/k.rolerolle/",
-  "icon": "svgs/instagram.svg",
+  "icon": "/vinyl/svgs/instagram.svg",
   "animated_background": false,
   "order": [
     "evasion",

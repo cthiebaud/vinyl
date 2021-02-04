@@ -1,4 +1,4 @@
-# <a id="vinyl_brand" style="margin-right:.5rem;" title="Vinyl Title" href="/vinyl/" target="_mugnier_et_thiebaud"><img src="svgs/vinyl_icon.svg"></a> Mugnier & Thiebaud
+# <a id="vinyl_brand" style="margin-right:.5rem;" title="Vinyl Title" href="/vinyl/" target="_mugnier_et_thiebaud"><img src="/vinyl/svgs/vinyl_icon.svg"></a> Mugnier & Thiebaud
 
 Mugnier & Thiebaud are a French music duo from [Chaumont](https://en.wikipedia.org/wiki/Chaumont,_Haute-Marne) ; Mugnier writes texts, composes music, and paints pictures, Thiebaud composes music, writes arrangements, and develops software ; though Thiebaud is supposed to be a learned musician, songs by Mugnier are much better, hence Thiebaud's bitter jealousness.
 
@@ -31,7 +31,6 @@ Also, the impressions click-through rate for the sensation video is significantl
 
 **channel**<br> ![sensation](jpegs/impressions_click-through_rate_channel.jpg)
 
------
+---
 
 If you are still with us, more here: [Songs for Vinyl Project](https://aequologica.net/vinyl/)
-

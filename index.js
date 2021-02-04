@@ -64,8 +64,10 @@ $(document).ready(function () {
 
     const backgroundClass = (background, background_animated) => {
       const start = () => {
-        $start_pause_button.children("img").attr("src", "./svgs/pause.svg");
-        // ./svgs/vinyl_rotating.svg
+        $start_pause_button
+          .children("img")
+          .attr("src", "/vinyl/svgs/pause.svg");
+        // /vinyl/svgs/vinyl_rotating.svg
         $("html").css({
           background:
             "url(" + background_animated + ") no-repeat center center",
@@ -74,8 +76,8 @@ $(document).ready(function () {
         return "started";
       };
       const stop = () => {
-        $start_pause_button.children("img").attr("src", "./svgs/play.svg");
-        // ./svgs/vinyl.svg
+        $start_pause_button.children("img").attr("src", "/vinyl/svgs/play.svg");
+        // /vinyl/svgs/vinyl.svg
         $("html").css({
           background: "url(" + background + ") no-repeat center center",
           "background-size": "contain",
@@ -84,7 +86,8 @@ $(document).ready(function () {
       };
       const toggle = () => {
         if (
-          $start_pause_button.children("img").attr("src") == "./svgs/pause.svg"
+          $start_pause_button.children("img").attr("src") ==
+          "/vinyl/svgs/pause.svg"
         ) {
           return stop();
         } else {
@@ -157,7 +160,7 @@ $(document).ready(function () {
             id: $theButton.data("id"),
           })
         ).css(styleAndParentCard.style);
-        const $svg = $('<img src="svgs/vinyl_rotating.svg">').css({
+        const $svg = $('<img src="/vinyl/svgs/vinyl_rotating.svg">').css({
           position: "absolute",
           top: styleAndParentCard.style.top + styleAndParentCard.qwe.oh,
           left: styleAndParentCard.style.left + styleAndParentCard.qwe.ow,
@@ -165,7 +168,7 @@ $(document).ready(function () {
           height: "auto",
           "pointer-events": "none",
           opacity: 0.3,
-          "margin-left": "-" + (styleAndParentCard.qwe.ow / 2) + "px",
+          "margin-left": "-" + styleAndParentCard.qwe.ow / 2 + "px",
         });
         styleAndParentCard.$parentCard.css("overflow", "hidden");
         $thePlayer = $theButton.attr("class").match("(vid|sound)")
