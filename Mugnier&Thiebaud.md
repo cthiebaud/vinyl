@@ -1,7 +1,5 @@
 # <a id="vinyl_brand" style="margin-right:.5rem;" title="Vinyl Title" href="/vinyl/" target="_mugnier_et_thiebaud"><img src="/vinyl/svgs/vinyl_icon.svg"></a> Mugnier & Thiebaud
 
-Mugnier & Thiebaud are a French music duo from [Chaumont](https://en.wikipedia.org/wiki/Chaumont,_Haute-Marne) ; Mugnier writes texts, composes music, and paints pictures, Thiebaud composes music, writes arrangements, and develops software ; though Thiebaud is supposed to be a learned musician, songs by Mugnier are much better, hence Thiebaud's bitter jealousness.
-
 <div class="row mb-2"><div class="col">
 
 <img src="jpegs/Mugnier.jpg" alt="Mugnier" class="img-fluid mb-2">
@@ -13,6 +11,8 @@ Mugnier & Thiebaud are a French music duo from [Chaumont](https://en.wikipedia.o
 <img src="jpegs/Mugnier2.jpg" alt="Mugnier" class="img-fluid float-end">
 
 </div></div>
+
+Mugnier & Thiebaud are a French music duo from [Chaumont](https://en.wikipedia.org/wiki/Chaumont,_Haute-Marne) ; Mugnier writes texts, composes music, and paints pictures, Thiebaud composes music, writes arrangements, and develops software ; though Thiebaud is supposed to be a learned musician, songs by Mugnier are much better, hence Thiebaud's bitter jealousness.
 
 Mugnier and Thiebaud met as teenagers ; Thiebaud enjoys now a well deserved pre-retirement ; Mugnier never ever went through paid work sufferings ; this conjunction of the stars leaves them some time for their endeavour.
 
