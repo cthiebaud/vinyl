@@ -4,7 +4,7 @@
   "navbarheader": "/header.html",
   "brandlink": "XXX",
   "icon": "/vinyl/svgs/vinyl_icon.svg",
-  "background": "/vinyl/svgs/vinyl.svg",
+  "background": "/vinyl/svgs/vinyl_record.svg",
   "background_animated": "/vinyl/svgs/vinyl_rotating.svg",
   "no_recursion": "XXX",
   "order": ["XXX", "YYY"],
