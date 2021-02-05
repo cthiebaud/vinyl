@@ -1,12 +1,12 @@
 {
-  "id" : "mugnier_and_thiebaud",
+  "id": "mugnier_and_thiebaud",
   "copyright": "Copyright © 2021 [Mugnier & Thiebaud]. All Rights Reserved.",
   "navbarheader": "navbarHeader.html",
   "brandlink": "/vinyl/showdown.html?Mugnier&Thiebaud.md",
-  "icon": "svgs/vinyl_icon.svg",
-  "background": "svgs/vinyl.svg",
-  "background_animated": "svgs/vinyl_rotating.svg",
-  
+  "icon": "/vinyl/svgs/vinyl_icon.svg",
+  "background": "/vinyl/svgs/vinyl.svg",
+  "background_animated": "/vinyl/svgs/vinyl_rotating.svg",
+
   "no_recursion": "orange2",
   "order": [
     "bateau",
