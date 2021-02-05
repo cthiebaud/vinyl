@@ -1,37 +1,32 @@
 {
-  "id": "XXX",
-  "copyright": "Copyright © 2021 [XXX]. All Rights Reserved.",
-  "navbarheader": "/header.html",
-  "brandlink": "XXX",
-  "icon": "/vinyl/svgs/vinyl_icon.svg",
-  "background": "/vinyl/svgs/vinyl_record.svg",
-  "background_animated": "/vinyl/svgs/vinyl_rotating.svg",
-  "no_recursion": "XXX",
-  "order": ["XXX", "YYY"],
+  "id": "",
+  "copyright": "",
+  "navbarheader": "",
+  "brandlink": "",
+  "icon": "",
+  "background": "",
+  "background_animated": "",
+  "no_recursion": "",
+  "order": ["", ""],
   "songs": {
     "XXX": {
-      "text": "XXX",
+      "text": "",
       "duration": "0:00",
       "watch": [
         {
-          "url": "XXX",
-          "id": "XXX",
-          "title": "XXX"
+          "url": "",
+          "id": "",
+          "title": ""
         }
       ],
       "listen": [
         {
-          "url": "XXX",
-          "id": "XXX",
-          "title": "XXX"
-        },
-        {
-          "url": "XXX",
-          "id": "XXX",
-          "title": "XXX"
+          "url": "",
+          "id": "",
+          "title": ""
         }
       ],
-      "markdown": "XXX",
+      "markdown": "",
       "instagram": true
     }
   }

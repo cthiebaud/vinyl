@@ -1,6 +1,5 @@
 function isElementPartInViewport(el) {
   var box = el.getBoundingClientRect();
-
   return !(
     (window.innerHeight || document.documentElement.clientHeight) < box.top 
     ||
@@ -25,22 +24,17 @@ export function fadeIn($elements, delay, eventually, shuffle) {
   if ($elements.length == 0) { 
     return;
   }
-
   let elem = $elements.toArray().map((element) => element);
   const opacity = 1;
-
   if (shuffle) {
     shuffle(elem);
   }
-
   const last = () => {
     if (eventually) {
       eventually();
     }
   };
-
   
-
   // // elegant, but something must be missing, animations are not queued
   //   elem
   //     .reduce((acc, e) => Promise.resolve(acc).then((a) => $(e).fadeTo( delayIfVisible(e, delay), opacity, () => a)), undefined)
@@ -81,10 +75,8 @@ export function fadeIn($elements, delay, eventually, shuffle) {
     });
   });
   // ouf !
-
 }
   
-
 export function fadeOut($elements, delay, eventually) {
   //stackoverflow.com/a/8333110/1070215
   $elements.fadeTo(delay, 0);

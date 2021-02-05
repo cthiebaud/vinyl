@@ -160,22 +160,8 @@ $(document).ready(function () {
             id: $theButton.data("id"),
           })
         ).css(styleAndParentCard.style);
-        /*         
-        const $svg = $('<img src="/vinyl/svgs/vinyl_rotating.svg">').css({
-          position: "absolute",
-          top: styleAndParentCard.style.top + styleAndParentCard.qwe.oh,
-          left: styleAndParentCard.style.left + styleAndParentCard.qwe.ow,
-          width: styleAndParentCard.qwe.ow + "px",
-          height: "auto",
-          "pointer-events": "none",
-          opacity: 0.3,
-          "margin-left": "-" + styleAndParentCard.qwe.ow / 2 + "px",
-        });
-        styleAndParentCard.$parentCard.css("overflow", "hidden");
- */
-        $thePlayer = /* $theButton.attr("class").match("(vid|sound)")
-          ? [$iframe, $svg]
-          :  */[$iframe];
+
+        $thePlayer = [$iframe];
         $thePlayer.forEach((p) => styleAndParentCard.$parentCard.append(p));
       }
     }
@@ -204,23 +190,6 @@ $(document).ready(function () {
         );
       });
 
-      /*       
-      $("div.card [type='button'].vid").on("click", (e) =>
-        showiframe(e, templates.video)
-      );
-      $("div.card [type='button'].sound").on("click", (e) =>
-        showiframe(e, templates.sound)
-      );
-      $("div.card [type='button'].markdown").on("click", (e) =>
-        showiframe(e, templates.markdown)
-      );
-      $("div.card [type='button'].url").on("click", (e) =>
-        showiframe(e, templates.url)
-      );
-      $("div.card [type='button'].instagram").on("click", (e) =>
-        showiframe(e, templates.instagram)
-      );
-      */
     }
 
     function insertCards(datums, $parent) {
