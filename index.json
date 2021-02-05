@@ -1,226 +1,38 @@
 {
-  "id": "mugnier_and_thiebaud",
-  "copyright": "Copyright © 2021 [Mugnier & Thiebaud]. All Rights Reserved.",
-  "navbarheader": "navbarHeader.html",
-  "brandlink": "/vinyl/showdown.html?Mugnier&Thiebaud.md",
+  "id": "XXX",
+  "copyright": "Copyright © 2021 [XXX]. All Rights Reserved.",
+  "navbarheader": "/header.html",
+  "brandlink": "XXX",
   "icon": "/vinyl/svgs/vinyl_icon.svg",
   "background": "/vinyl/svgs/vinyl.svg",
   "background_animated": "/vinyl/svgs/vinyl_rotating.svg",
-
-  "no_recursion": "orange2",
-  "order": [
-    "bateau",
-    "brouillard",
-    "bwv",
-    "dancing",
-    "larme",
-    "matin",
-    "matsubaba",
-    "orange2",
-    "poux",
-    "sensation",
-    "supplique",
-    "tour"
-  ],
+  "no_recursion": "XXX",
+  "order": ["XXX", "YYY"],
   "songs": {
-    "bateau": {
-      "text": "Le Bateau ivre (AR)",
-      "duration": "6:33",
+    "XXX": {
+      "text": "XXX",
+      "duration": "0:00",
       "watch": [
         {
-          "url": "https://youtu.be/a3Ek2EYkGsw",
-          "id": "a3Ek2EYkGsw",
-          "title": "hiebaud @ Hockenheim - lundi 11 juin 2018, 8:20 du matin"
+          "url": "XXX",
+          "id": "XXX",
+          "title": "XXX"
         }
       ],
       "listen": [
         {
-          "url": "https://soundcloud.com/christophe-thiebaud/le-bateau-ivre",
-          "id": "203852214",
-          "title": "Thiebaud @ Seloncourt - 2015"
+          "url": "XXX",
+          "id": "XXX",
+          "title": "XXX"
         },
         {
-          "url": "https://soundcloud.com/christophe-thiebaud/le-bateau-ivre-1",
-          "id": "969780100",
-          "title": "'Sacha Pitoeff' mix - janvier 2021"
+          "url": "XXX",
+          "id": "XXX",
+          "title": "XXX"
         }
       ],
-      "markdown": "https://www.poetica.fr/poeme-1906/arthur-rimbaud-le-bateau-ivre/"
-    },
-    "dancing": {
-      "text": "Socially Distant Dancing",
-      "duration": "3:49",
-      "watch": [
-        {
-          "url": "https://youtu.be/K6rk5tG71rI",
-          "id": "K6rk5tG71rI",
-          "title": "Mother by Bong Joon-ho (2009) + nième avatar de Matsubaba - 2020"
-        }
-      ],
-      "listen": [
-        {
-          "url": "https://soundcloud.com/christophe-thiebaud/matsubaba",
-          "id": "958856077",
-          "title": "nième avatar de Matsubaba - 2020"
-        }
-      ]
-    },
-    "larme": {
-      "text": "Larme (AR)",
-      "duration": "3:47",
-      "watch": [
-        {
-          "url": "https://youtu.be/Zk_YubAnJmM",
-          "id": "Zk_YubAnJmM",
-          "title": "With Flavio Piscopo (percussioni) - 2016"
-        }
-      ],
-      "markdown": "https://www.poetica.fr/poeme-899/arthur-rimbaud-larme/"
-    },
-    "matin": {
-      "text": "Bonne pensée du matin (AR)",
-      "duration": "3:17",
-      "watch": [
-        {
-          "url": "https://youtu.be/KHRBZ7buOFk",
-          "id": "KHRBZ7buOFk",
-          "title": "Pendant le premier confinement, sur notre balcon à San Lazzaro di Savena - mai 2020"
-        }
-      ],
-      "listen": [
-        {
-          "url": "https://soundcloud.com/christophe-thiebaud/bonne-pensee-du-matin-arthur",
-          "id": "811632862",
-          "title": "nième avatar de 'Pray the Lord'"
-        }
-      ],
-      "markdown": "https://www.poetica.fr/poeme-646/arthur-rimbaud-bonne-pensee-du-matin/"
-    },
-    "matsubaba": {
-      "text": "Matsubaba Cantata",
-      "duration": "6:08",
-      "listen": [
-        {
-          "url": "https://soundcloud.com/christophe-thiebaud/matsubaba_cantata",
-          "id": "962293678",
-          "title": "Le 'vrai' Matsubaba, dans sa version de 2021"
-        }
-      ]
-    },
-    "poux": {
-      "text": "Les chercheuses de poux (AR)",
-      "duration": "2:24",
-      "listen": [
-        {
-          "url": "https://soundcloud.com/christophe-thiebaud/les-chercheuses-de-poux/s-kZTIT",
-          "id": "262697864%3Fsecret_token%3Ds-kZTIT",
-          "title": "très brut de fonderie, il faut encore le travailler - 2016"
-        }
-      ],
-      "markdown": "https://www.poetica.fr/poeme-138/arthur-rimbaud-les-chercheuses-de-poux/"
-    },
-    "sensation": {
-      "text": "Sensation (AR)",
-      "duration": "5:21",
-      "watch": [
-        {
-          "url": "https://youtu.be/tkK7Bi7c7Wc",
-          "id": "tkK7Bi7c7Wc",
-          "title": "The New World Terrence Malick (2005) - 2021"
-        }
-      ],
-      "listen": [
-        {
-          "url": "https://soundcloud.com/christophe-thiebaud/sensation-new-mix/s-oyXVmEq51cf",
-          "id": "976587832%3Fsecret_token%3Ds-oyXVmEq51cf",
-          "title": "2021"
-        }
-      ],
-      "markdown": "https://www.poetica.fr/poeme-533/arthur-rimbaud-sensation/",
+      "markdown": "XXX",
       "instagram": true
-    },
-    "supplique": {
-      "text": "Supplique Pour Être Enterré À La Plage De Sète (GB)",
-      "duration": "8:00",
-      "listen_": [
-        {
-          "url": "https://soundcloud.com/christophe-thiebaud/supplique-pour-etre-enterre-a/s-1ON0iP3KZ2d",
-          "id": "811603621%3Fsecret_token%3Ds-1ON0iP3KZ2d",
-          "title": "dans le futur"
-        }
-      ],
-      "markdown": "http://www.analysebrassens.com/?page=texte&id=94&%23"
-    },
-    "tour": {
-      "text": "Chanson de la plus haute tour (AR)",
-      "duration": "5:09",
-      "watch": [
-        {
-          "url": "https://youtu.be/7lKeQ91LtFk",
-          "id": "7lKeQ91LtFk",
-          "title": "2021"
-        }
-      ],
-      "listen": [
-        {
-          "url": "https://soundcloud.com/christophe-thiebaud/chanson-de-la-plus-haute-tour",
-          "id": "969542389",
-          "title": "2021"
-        }
-      ],
-      "markdown": "http://courses.logos.it/plscourses/linguistic_resources.laboratorio5?lang=en"
-    },
-    "brouillard": {
-      "text": "Psycho Brouillard",
-      "duration": "3:54",
-      "watch": [
-        {
-          "url": "https://youtu.be/ehCW0AkOp2Q",
-          "id": "ehCW0AkOp2Q",
-          "title": "Alfred Hitchcock, 1960"
-        },
-        {
-          "url": "https://youtu.be/wDe2REZxvMo",
-          "id": "wDe2REZxvMo",
-          "title": "Gus Van Sant, 1998"
-        }
-      ],
-      "listen": [
-        {
-          "url": "https://soundcloud.com/christophe-thiebaud/wam-brouillard",
-          "id": "75183023",
-          "title": "Les Fils à Papa au Val d'Orge - 1984"
-        }
-      ],
-      "markdown": "https://youtu.be/OZuS8QQsQK8"
-    },
-    "orange2": {
-      "text": "This page intentionally left orange.",
-      "extension": ".svg",
-      "duration": "&infin;",
-      "url": "/vinyl?no_recursion=true"
-    },
-    "bwv": {
-      "text": "Johann Sebastian Bach",
-      "extension": ".svg",
-      "duration": "",
-      "watch": [
-        {
-          "url": "https://youtu.be/p9Cc4amUnHw",
-          "id": "p9Cc4amUnHw",
-          "title": "Largo from sonata #3 in C major BWV 1005 for solo violin - 2020"
-        },
-        {
-          "url": "https://youtu.be/OHp12oUx81A",
-          "id": "OHp12oUx81A",
-          "title": "BWV 1006 (w/o 'a') with some borrowings from BWV 29 - 2020"
-        },
-        {
-          "url": "https://youtu.be/UWXZn5jskEM",
-          "id": "UWXZn5jskEM",
-          "title": "Goldberg Variations BWV988 - Variatio 18. Canone alla Sexta."
-        }
-      ]
     }
   }
 }
