@@ -160,6 +160,7 @@ $(document).ready(function () {
             id: $theButton.data("id"),
           })
         ).css(styleAndParentCard.style);
+        /*         
         const $svg = $('<img src="/vinyl/svgs/vinyl_rotating.svg">').css({
           position: "absolute",
           top: styleAndParentCard.style.top + styleAndParentCard.qwe.oh,
@@ -171,9 +172,10 @@ $(document).ready(function () {
           "margin-left": "-" + styleAndParentCard.qwe.ow / 2 + "px",
         });
         styleAndParentCard.$parentCard.css("overflow", "hidden");
-        $thePlayer = $theButton.attr("class").match("(vid|sound)")
+ */
+        $thePlayer = /* $theButton.attr("class").match("(vid|sound)")
           ? [$iframe, $svg]
-          : [$iframe];
+          :  */[$iframe];
         $thePlayer.forEach((p) => styleAndParentCard.$parentCard.append(p));
       }
     }
