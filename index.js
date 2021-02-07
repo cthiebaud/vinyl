@@ -54,6 +54,7 @@ $(document).ready(function () {
     }
 
     let $thePlayer = undefined;
+    let theOtherPlayer = undefined;
     let $theButton = undefined;
 
     let theBackground = {
@@ -103,10 +104,20 @@ $(document).ready(function () {
 
     //  destroy if exists
     function destroyiframeIfExists($button) {
+      if (theOtherPlayer) {
+        theOtherPlayer.destroy();
+        theOtherPlayer = undefined;
+      }
       if ($thePlayer) {
-        $thePlayer.forEach((p) => p.remove());
+        $thePlayer.forEach((p, k) => {
+          p.remove();
+        });
         $thePlayer = undefined;
       }
+
+      // be on the safe side
+      $(".widgette").remove();
+      
       if ($theButton) {
         $theButton.html($theButton.data("text"));
         if (!$button || $theButton.prop("id") === $button.prop("id")) {
@@ -163,6 +174,13 @@ $(document).ready(function () {
 
         $thePlayer = [$iframe];
         $thePlayer.forEach((p) => styleAndParentCard.$parentCard.append(p));
+        if ($theButton.attr("class").indexOf("vid") != -1) {
+          theOtherPlayer = new Plyr("#yt-widget", {
+            autoplay: true,
+            ratio: "4:3",
+          });
+          $(theOtherPlayer.elements.container).css(styleAndParentCard.style);
+        }
       }
     }
 
@@ -189,7 +207,6 @@ $(document).ready(function () {
           showiframe(e, templates[key])
         );
       });
-
     }
 
     function insertCards(datums, $parent) {

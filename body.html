@@ -56,16 +56,18 @@
 </script>
 
 <script id="vid-template" type="text/x-handlebars-template">
-  <iframe 
+  <div id="yt-widget" class="widgette" data-plyr-provider="youtube" data-plyr-embed-id="{{id}}"></div>
+</script>
+<!-- <iframe 
     id="yt-widget" 
     src="https://www.youtube.com/embed/{{id}}?controls=0&autoplay=1"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
-  </iframe>
-</script>
+  </iframe> -->
 
 <script id="sound-template" type="text/x-handlebars-template">
   <iframe 
     id="sc-widget" 
+    class="widgette" 
     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{id}}&auto_play=true&buying=false&liking=true&download=false&sharing=false&show_artwork=true&show_comments=false&show_playcount=false&show_user=true&hide_related=true&visual=true&callback=true">
   </iframe>
 </script>
@@ -73,6 +75,7 @@
 <script id="markdown-template" type="text/x-handlebars-template">
   <iframe 
     id="tx-widget" 
+    class="widgette" 
     src="/vinyl/showdown_dark.html?/texts/{{id}}.md">
   </iframe>
 </script>
@@ -80,6 +83,7 @@
 <script id="url-template" type="text/x-handlebars-template">
   <iframe 
     id="bs-widget" 
+    class="widgette" 
     src="{{id}}">
   </iframe>
 </script>
@@ -87,6 +91,7 @@
 <script id="instagram-template" type="text/x-handlebars-template">
   <iframe 
     id="insta-widget" 
+    class="widgette" 
     src="/vinyl/showdown.html?/instagrams/{{id}}.md">
   </iframe>
 </script>
