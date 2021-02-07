@@ -45,3 +45,7 @@ header .list-unstyled img {
   height: 18px;
   margin-right: 0.3rem;
 }
+
+:root {
+  --plyr-font-family: monospace;
+}

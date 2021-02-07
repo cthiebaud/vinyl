@@ -178,6 +178,7 @@ $(document).ready(function () {
           theOtherPlayer = new Plyr("#yt-widget", {
             autoplay: true,
             ratio: "4:3",
+            settings: ["captions"],
           });
           $(theOtherPlayer.elements.container).css(styleAndParentCard.style);
         }
