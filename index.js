@@ -304,17 +304,22 @@ $(document).ready(function () {
 
       const $row = $("#songs");
       insertCards(data, $row);
-      fadeIn($row.children(".col"), 111, () => {});
+      fadeIn($row.children(".col"), 111, () => { });
+      
+      if (order == "shuffle") {
 
-      $("#shuffle_button").on("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        fadeOut($row.children(".col"), 333, () => {
-          $row.empty();
-          insertCards(data, $row);
-          fadeIn($row.children(".col"), 666, () => {}, shuffleArray);
+        $("#shuffle_button").on("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          fadeOut($row.children(".col"), 333, () => {
+            $row.empty();
+            insertCards(data, $row);
+            fadeIn($row.children(".col"), 666, () => { }, shuffleArray);
+          });
         });
-      });
+      } else { 
+        $("#shuffle_button").remove();
+      }
     });
   });
 });
