@@ -34,6 +34,7 @@ $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const no_recursion = urlParams.get("no_recursion") || false;
     const file = $("head meta[name='file']").attr("content") || "index.json";
+    const order = $("head meta[name='order']").attr("content") || "shuffle";
 
     // http://stackoverflow.com/questions/20789373/shuffle-array-in-ng-repeat-angular
     // -> Fisher–Yates shuffle algorithm
@@ -117,7 +118,7 @@ $(document).ready(function () {
 
       // be on the safe side
       $(".widgette").remove();
-      
+
       if ($theButton) {
         $theButton.html($theButton.data("text"));
         if (!$button || $theButton.prop("id") === $button.prop("id")) {
@@ -147,7 +148,7 @@ $(document).ready(function () {
           height: oh + "px",
           "background-color": "#212529",
         },
-        qwe: { ow: ow, oh: oh },
+        boh: { ow: ow, oh: oh },
         $parentCard: $parentCard,
       };
     }
@@ -211,9 +212,12 @@ $(document).ready(function () {
     }
 
     function insertCards(datums, $parent) {
-      const shuffle = shuffleArray([...datums.order]);
+      let cards = [...datums.order];
+      if (order == "shuffle") {
+        cards = shuffleArray(cards);
+      }
 
-      shuffle.forEach((key) => {
+      cards.forEach((key) => {
         $parent.append(
           $(
             templates.song({
