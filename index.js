@@ -3,6 +3,10 @@
 import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
 
 $(document).ready(function () {
+
+  const file = $("head meta[name='file']").attr("content") || "index.json";
+  const order = $("head meta[name='order']").attr("content") || "shuffle";
+
   // fetch body
   $.get("/vinyl/body.html").done(function (body) {
     $("body").append(body);
@@ -33,8 +37,6 @@ $(document).ready(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     const no_recursion = urlParams.get("no_recursion") || false;
-    const file = $("head meta[name='file']").attr("content") || "index.json";
-    const order = $("head meta[name='order']").attr("content") || "shuffle";
 
     // http://stackoverflow.com/questions/20789373/shuffle-array-in-ng-repeat-angular
     // -> Fisher–Yates shuffle algorithm
