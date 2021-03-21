@@ -27,6 +27,7 @@ $(document).ready(function () {
       markdown: undefined,
       url: undefined,
       instagram: undefined,
+      bandlab: undefined,
     };
 
     Object.keys(templates).map(function (key, index) {
@@ -129,7 +130,7 @@ $(document).ready(function () {
         }
       }
       if ($button) {
-        $button.html("<span style='color:lightblue'>close ×</span>");
+        $button.html("<span style='color:lightblue'>close&nbsp;×</span>");
       }
       return $button;
     }

@@ -96,6 +96,10 @@
   </iframe>
 </script>
 
+<script id="bandlab-template" type="text/x-handlebars-template">
+  <iframe id="bandlab-widget" src="https://www.bandlab.com/embed/?id={{id}}"></iframe>
+</script>
+
 <script id="song-template" type="text/x-handlebars-template">
   <div id="{{key}}_" class="col" style="opacity: 0.0;">
     <div id="{{key}}" class="card shadow-sm bg-secondary" style="position: relative;">
@@ -103,27 +107,38 @@
 
       <div class="card-body text-light bg-dark"><!-- style="display:none;" -->
         <p class="card-text" style="font-size: smaller;">{{val.text}}
-        <span class="text-muted float-end" style="font-family:'Courier New', Courier, monospace">{{{val.date}}}</span>
+        <span class="text-muted float-end" style="font-family:'Courier New', Courier, monospace; text-align: right;">{{{val.date}}}</span>
         </p>
         <div class="d-flex justify-content-between align-items-center">
           <div class="btn-group">
             {{#each val.watch}}
-            <a type="button" id="watch_{{id}}" title="{{title}}" class="vid btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="watch">watch</a>
+            <a type="button" id="watch_{{id}}" style="font-size: 10px;" title="{{title}}" class="vid btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="watch">watch
+              <!-- <img style="height:24px; width: auto;" src="/vinyl/svgs/YouTube_social_white_squircle_(2017).svg"> -->
+            </a>
             {{/each}}
             {{#each val.listen}}
-            <a type="button" id="listen_{{id}}" title="{{title}}" class="sound btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="listen">listen</a>
+            <a type="button" id="listen_{{id}}" style="font-size: 10px;" title="{{title}}" class="sound btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="listen">listen
+              <!-- <img style="height:24px; width: auto;" src="/vinyl/svgs/Soundcloud-Icon.svg"> -->
+            </a>
+            {{/each}}
+            {{#each val.bandlab}}
+            <a type="button" id="bandlab_{{id}}" style="font-size: 10px;" title="{{title}}" class="bandlab btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="listen">listen
+              <!-- <img style="height:24px; width: auto;" src="/vinyl/svgs/bandlab.svg"> -->
+            </a>
             {{/each}}
             {{#if val.markdown}}
-            <a type="button" id="read_{{key}}" class="markdown btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="read">read</a>
+            <a type="button" id="read_{{key}}" style="font-size: 10px;" class="markdown btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="read">read
+              <!-- <img style="height:24px; width: auto;" src="/vinyl/svgs/open-book-svgrepo-com.svg"> -->
+            </a>
             {{/if}}
             {{#if val.url}}
-            <a type="button" id="url{{key}}" class="url btn btn-sm btn-outline-secondary" data-id="{{val.url}}" data-text="mise en abyme">mise en abyme</a>
+            <a type="button" id="url{{key}}" style="font-size: 10px;" class="url btn btn-sm btn-outline-secondary" data-id="{{val.url}}" data-text="mise en abyme">mise en abyme</a>
             {{/if}}
             {{#if val.instagram}}
-            <a type="button" id="url{{key}}" class="instagram btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="insta">insta</a>
+            <a type="button" id="url{{key}}" style="font-size: 10px;" class="instagram btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="insta">insta</a>
             {{/if}}
           </div>
-          <span class="text-muted" style="font-family:'Courier New', Courier, monospace">{{{val.duration}}}</span>
+          <span class="text-muted" style="font-size: smaller; font-family:'Courier New', Courier, monospace; text-align: right;">{{{val.duration}}}</span>
         </div>
       </div>
     </div>
