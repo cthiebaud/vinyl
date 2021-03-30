@@ -3,7 +3,6 @@
 import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
 
 $(document).ready(function () {
-
   const file = $("head meta[name='file']").attr("content") || "index.json";
   const order = $("head meta[name='order']").attr("content") || "shuffle";
 
@@ -307,21 +306,18 @@ $(document).ready(function () {
 
       const $row = $("#songs");
       insertCards(data, $row);
-      fadeIn($row.children(".col"), 111, () => { });
-      
-      if (order == "shuffle") {
+      fadeIn($row.children(".col"), 111, () => {});
 
-        $("#shuffle_button").on("click", (e) => {
-          e.preventDefault();
-          e.stopPropagation();
+      if (order == "shuffle") {
+        $("#shuffle_order_button").on("click", (e) => {
           fadeOut($row.children(".col"), 333, () => {
             $row.empty();
             insertCards(data, $row);
-            fadeIn($row.children(".col"), 666, () => { }, shuffleArray);
+            fadeIn($row.children(".col"), 666, () => {}, shuffleArray);
           });
         });
-      } else { 
-        $("#shuffle_button").remove();
+      } else {
+        $("#order_button_group").remove();
       }
     });
   });
