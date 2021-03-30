@@ -223,6 +223,13 @@ $(document).ready(function () {
       let cards = [...datums.order];
       if (order == "shuffle") {
         cards = shuffleArray(cards);
+      } else if (order == "chronological") {
+        cards = cards.sort((a, b) => {
+          const dateA = dayjs(datums.songs[a].date);
+          const dateB = dayjs(datums.songs[b].date);
+          console.log(dateA, dateB);
+          return dateA.isBefore(dateB) ? 1 : -1;
+        });
       }
 
       cards.forEach((key) => {
@@ -315,6 +322,13 @@ $(document).ready(function () {
       fadeIn($row.children(".col"), 111);
 
       if (!hide_sort_button) {
+        $("#chronological_order_button").on("click", (e) => {
+          fadeOut($row.children(".col"), 111, () => {
+            $row.empty();
+            insertCards(data, $row, "chronological");
+            fadeIn($row.children(".col"), 222);
+          });
+        });
         $("#default_order_button").on("click", (e) => {
           fadeOut($row.children(".col"), 222, () => {
             $row.empty();

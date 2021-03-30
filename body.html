@@ -19,7 +19,7 @@
           <li><button id="default_order_button" class="btn" type="button" style="border:none;">
               <img src="/vinyl/svgs/shut-down-svgrepo-com.svg" style="width:30px; height: 30px;" title="Default Sort">
             </button></li>
-          <li><button id="clockwise_order_button" class="btn" type="button" style="border:none;" disabled>
+          <li><button id="chronological_order_button" class="btn" type="button" style="border:none;" >
               <img src="/vinyl/svgs/clockwise-rotation-svgrepo-com.svg" style="width:30px; height: 30px;" title="Chronological Sort">
             </button></li>
           <li><button id="shuffle_order_button" class="btn" type="button" style="border:none;" >
@@ -117,7 +117,7 @@
 </script>
 
 <script id="song-template" type="text/x-handlebars-template">
-  <div id="{{key}}_" class="col" style="opacity: 0.0;">
+  <div id="{{key}}_" class="col" style="opacity: 0.0;" data-date="{{val.date}}">
     <div id="{{key}}" class="card shadow-sm bg-secondary" style="position: relative;">
       <img class="img-fluid" src="./{{covers}}/{{cover}}" data-url="{{val.link}}" alt="">
 

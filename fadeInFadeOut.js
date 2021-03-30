@@ -12,7 +12,7 @@ function delayIfVisible(el, delay) {
   if (isElementPartInViewport(el)) {
     return delay;
   } else {
-    console.log(0, el);
+    // console.log(0, el);
     return 0;
   }
 }
@@ -30,14 +30,14 @@ export function fadeIn($elements, delay) {
   function methodThatReturnsAPromise(nextElement) {
     return new Promise((resolve, reject) => {
       $(nextElement).fadeTo(delayIfVisible(nextElement, delay), opacity, () => {
-        console.log(`Resolve! ${dayjs().format("hh:mm:ss")}`);
+        // console.log(`Resolve! ${dayjs().format("hh:mm:ss")}`);
 
         resolve();
       });
     });
   }
   elem.reduce((accumulatorPromise, nextElement) => {
-    console.log(`Loop! ${dayjs().format("hh:mm:ss")}`);
+    // console.log(`Loop! ${dayjs().format("hh:mm:ss")}`);
 
     return accumulatorPromise.then(() => {
       return methodThatReturnsAPromise(nextElement);
