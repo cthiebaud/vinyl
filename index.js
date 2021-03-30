@@ -4,7 +4,13 @@ import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
 
 $(document).ready(function () {
   const file = $("head meta[name='file']").attr("content") || "index.json";
-  const order = $("head meta[name='order']").attr("content") || "shuffle";
+  const $hide_sort_button = $("head meta[name='hide_sort_button']");
+  let hide_sort_button = false;
+  if ($hide_sort_button.length != 0) {
+    if ($hide_sort_button.attr("content") == "true") {
+      hide_sort_button = true;
+    }
+  }
 
   // fetch body
   $.get("/vinyl/body.html").done(function (body) {
@@ -213,7 +219,7 @@ $(document).ready(function () {
       });
     }
 
-    function insertCards(datums, $parent) {
+    function insertCards(datums, $parent, order) {
       let cards = [...datums.order];
       if (order == "shuffle") {
         cards = shuffleArray(cards);
@@ -308,11 +314,18 @@ $(document).ready(function () {
       insertCards(data, $row);
       fadeIn($row.children(".col"), 111);
 
-      if (order == "shuffle") {
+      if (!hide_sort_button) {
+        $("#default_order_button").on("click", (e) => {
+          fadeOut($row.children(".col"), 222, () => {
+            $row.empty();
+            insertCards(data, $row);
+            fadeIn($row.children(".col"), 444);
+          });
+        });
         $("#shuffle_order_button").on("click", (e) => {
           fadeOut($row.children(".col"), 333, () => {
             $row.empty();
-            insertCards(data, $row);
+            insertCards(data, $row, "shuffle");
             fadeIn($row.children(".col"), 666);
           });
         });
