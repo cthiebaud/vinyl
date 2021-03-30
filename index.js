@@ -32,7 +32,7 @@ $(document).ready(function () {
       markdown: undefined,
       url: undefined,
       instagram: undefined,
-      bandlab: undefined,
+ /*      bandlab: undefined, */
     };
 
     Object.keys(templates).map(function (key, index) {
@@ -322,17 +322,17 @@ $(document).ready(function () {
       fadeIn($row.children(".col"), 111);
 
       if (!hide_sort_button) {
-        $("#chronological_order_button").on("click", (e) => {
+        $("#default_order_button").on("click", (e) => {
           fadeOut($row.children(".col"), 111, () => {
             $row.empty();
-            insertCards(data, $row, "chronological");
+            insertCards(data, $row);
             fadeIn($row.children(".col"), 222);
           });
         });
-        $("#default_order_button").on("click", (e) => {
+        $("#chronological_order_button").on("click", (e) => {
           fadeOut($row.children(".col"), 222, () => {
             $row.empty();
-            insertCards(data, $row);
+            insertCards(data, $row, "chronological");
             fadeIn($row.children(".col"), 444);
           });
         });

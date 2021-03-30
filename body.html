@@ -17,12 +17,12 @@
         </button>
         <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1" style="min-width: auto;">
           <li><button id="default_order_button" class="btn" type="button" style="border:none;">
-              <img src="/vinyl/svgs/shut-down-svgrepo-com.svg" style="width:30px; height: 30px;" title="Default Sort">
+              <img src="/vinyl/svgs/minus-svgrepo-com.svg" style="width:30px; height: 30px;" title="Default Sort">
             </button></li>
-          <li><button id="chronological_order_button" class="btn" type="button" style="border:none;" >
-              <img src="/vinyl/svgs/clockwise-rotation-svgrepo-com.svg" style="width:30px; height: 30px;" title="Chronological Sort">
+          <li><button id="chronological_order_button" class="btn" type="button" style="border:none;">
+              <img src="/vinyl/svgs/counterclockwise-rotation-svgrepo-com.svg" style="width:30px; height: 30px;" title="Chronological Sort">
             </button></li>
-          <li><button id="shuffle_order_button" class="btn" type="button" style="border:none;" >
+          <li><button id="shuffle_order_button" class="btn" type="button" style="border:none;">
               <img src="/vinyl/svgs/shuffle.svg" style="width:30px; height: 30px;" title="Random Sort">
             </button></li>
         </ul>
@@ -84,6 +84,7 @@
   <iframe 
     id="sc-widget" 
     class="widgette" 
+    allow="autoplay" 
     src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{id}}&auto_play=true&buying=false&liking=true&download=false&sharing=false&show_artwork=true&show_comments=false&show_playcount=false&show_user=true&hide_related=true&visual=true&callback=true">
   </iframe>
 </script>
@@ -112,9 +113,9 @@
   </iframe>
 </script>
 
-<script id="bandlab-template" type="text/x-handlebars-template">
+<!-- <script id="bandlab-template" type="text/x-handlebars-template">
   <iframe id="bandlab-widget" src="https://www.bandlab.com/embed/?id={{id}}"></iframe>
-</script>
+</script> -->
 
 <script id="song-template" type="text/x-handlebars-template">
   <div id="{{key}}_" class="col" style="opacity: 0.0;" data-date="{{val.date}}">
@@ -122,10 +123,12 @@
       <img class="img-fluid" src="./{{covers}}/{{cover}}" data-url="{{val.link}}" alt="">
 
       <div class="card-body text-light bg-dark"><!-- style="display:none;" -->
-        <p class="card-text" style="font-size: smaller;">{{val.text}}
-        <span class="text-muted float-end" style="font-family:'Courier New', Courier, monospace; text-align: right;">{{{val.date}}}</span>
-        </p>
-        <div class="d-flex justify-content-between align-items-center">
+        <div class="card-text" style="font-size: smaller; display: flex; margin-bottom:.5rem;">
+          <span style="flex-grow: 1;">{{val.text}}</span>
+          <span class="text-muted" style="font-family:'Courier New', Courier, monospace; text-align: right; white-space: nowrap;">{{{val.date}}}</span>
+        </div>
+        <!-- <hr/> -->
+        <div class="d-flex justify-content-between align-items-end">
           <div class="btn-group">
             {{#each val.watch}}
             <a type="button" id="watch_{{id}}" style="font-size: 10px;" title="{{title}}" class="vid btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="watch">watch
@@ -137,11 +140,10 @@
               <!-- <img style="height:24px; width: auto;" src="/vinyl/svgs/Soundcloud-Icon.svg"> -->
             </a>
             {{/each}}
-            {{#each val.bandlab}}
+            <!-- {{#each val.bandlab}}
             <a type="button" id="bandlab_{{id}}" style="font-size: 10px;" title="{{title}}" class="bandlab btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="listen">listen
-              <!-- <img style="height:24px; width: auto;" src="/vinyl/svgs/bandlab.svg"> -->
             </a>
-            {{/each}}
+            {{/each}} -->
             {{#if val.markdown}}
             <a type="button" id="read_{{key}}" style="font-size: 10px;" class="markdown btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="read">read
               <!-- <img style="height:24px; width: auto;" src="/vinyl/svgs/open-book-svgrepo-com.svg"> -->
