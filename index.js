@@ -306,14 +306,14 @@ $(document).ready(function () {
 
       const $row = $("#songs");
       insertCards(data, $row);
-      fadeIn($row.children(".col"), 111, () => {});
+      fadeIn($row.children(".col"), 111);
 
       if (order == "shuffle") {
         $("#shuffle_order_button").on("click", (e) => {
           fadeOut($row.children(".col"), 333, () => {
             $row.empty();
             insertCards(data, $row);
-            fadeIn($row.children(".col"), 666, () => {}, shuffleArray);
+            fadeIn($row.children(".col"), 666);
           });
         });
       } else {

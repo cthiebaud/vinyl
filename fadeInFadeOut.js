@@ -17,20 +17,12 @@ function delayIfVisible(el, delay) {
   }
 }
 
-export function fadeIn($elements, delay, eventually, shuffle) {
+export function fadeIn($elements, delay) {
   if ($elements.length == 0) {
     return;
   }
   let elem = $elements.toArray().map((element) => element);
   const opacity = 1;
-  if (shuffle) {
-    shuffle(elem);
-  }
-  const last = () => {
-    if (eventually) {
-      eventually();
-    }
-  };
 
   // https://css-tricks.com/why-using-reduce-to-sequentially-resolve-promises-works/
   // +
