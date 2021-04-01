@@ -76,8 +76,8 @@ $(document).ready(function () {
       const start = () => {
         $start_pause_button
           .children("img")
-          .attr("src", "/vinyl/svgs/pause.svg");
-        // /vinyl/svgs/vinyl_rotating.svg
+          .attr("src", "/vinyl/svgos/pause.svg");
+        // /vinyl/svgos/vinyl_rotating.svg
         $("html").css({
           background:
             "url(" + background_animated + ") no-repeat center center",
@@ -86,8 +86,10 @@ $(document).ready(function () {
         return "started";
       };
       const stop = () => {
-        $start_pause_button.children("img").attr("src", "/vinyl/svgs/play.svg");
-        // /vinyl/svgs/vinyl.svg
+        $start_pause_button
+          .children("img")
+          .attr("src", "/vinyl/svgos/play.svg");
+        // /vinyl/svgos/vinyl.svg
         $("html").css({
           background: "url(" + background + ") no-repeat center center",
           "background-size": "contain",
@@ -97,7 +99,7 @@ $(document).ready(function () {
       const toggle = () => {
         if (
           $start_pause_button.children("img").attr("src") ==
-          "/vinyl/svgs/pause.svg"
+          "/vinyl/svgos/pause.svg"
         ) {
           return stop();
         } else {
