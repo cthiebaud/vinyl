@@ -32,7 +32,7 @@ $(document).ready(function () {
       markdown: undefined,
       url: undefined,
       instagram: undefined,
- /*      bandlab: undefined, */
+      /*      bandlab: undefined, */
     };
 
     Object.keys(templates).map(function (key, index) {
@@ -223,11 +223,16 @@ $(document).ready(function () {
       let cards = [...datums.order];
       if (order == "shuffle") {
         cards = shuffleArray(cards);
+      } else if (order == "bpm") {
+        cards = cards.sort((a, b) => {
+          const bpmA = datums.songs[a].bpm;
+          const bpmB = datums.songs[b].bpm;
+          return bpmA - bpmB;
+        });
       } else if (order == "chronological") {
         cards = cards.sort((a, b) => {
           const dateA = dayjs(datums.songs[a].date);
           const dateB = dayjs(datums.songs[b].date);
-          console.log(dateA, dateB);
           return dateA.isBefore(dateB) ? 1 : -1;
         });
       }
@@ -333,6 +338,13 @@ $(document).ready(function () {
           fadeOut($row.children(".col"), 222, () => {
             $row.empty();
             insertCards(data, $row, "chronological");
+            fadeIn($row.children(".col"), 444);
+          });
+        });
+        $("#bpm_order_button").on("click", (e) => {
+          fadeOut($row.children(".col"), 222, () => {
+            $row.empty();
+            insertCards(data, $row, "bpm");
             fadeIn($row.children(".col"), 444);
           });
         });

@@ -22,6 +22,9 @@
           <li><button id="chronological_order_button" class="btn" type="button" style="border:none;">
               <img src="/vinyl/svgs/counterclockwise-rotation-svgrepo-com.svg" style="width:30px; height: 30px;" title="Chronological Sort">
             </button></li>
+          <li><button id="bpm_order_button" class="btn" type="button" style="border:none;">
+              <img src="/vinyl/svgs/download-speed-svgrepo-com.svg" style="width:30px; height: 30px;" title="Beat Per Minute Sort">
+            </button></li>
           <li><button id="shuffle_order_button" class="btn" type="button" style="border:none;">
               <img src="/vinyl/svgs/shuffle.svg" style="width:30px; height: 30px;" title="Random Sort">
             </button></li>
@@ -156,7 +159,7 @@
             <a type="button" id="url{{key}}" style="font-size: 10px;" class="instagram btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="insta">insta</a>
             {{/if}}
           </div>
-          <span class="text-muted" style="font-size: smaller; font-family:'Courier New', Courier, monospace; text-align: right;">{{{val.duration}}}</span>
+          <span class="text-muted" style="font-size: smaller; font-family:'Courier New', Courier, monospace; text-align: right;">{{{val.duration}}}{{#if val.bpm}}&nbsp;{{val.bpm}}bpm{{/if}}</span>
         </div>
       </div>
     </div>
