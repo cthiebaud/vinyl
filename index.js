@@ -227,7 +227,7 @@ $(document).ready(function () {
         cards = cards.sort((a, b) => {
           const bpmA = datums.songs[a].bpm;
           const bpmB = datums.songs[b].bpm;
-          return bpmA - bpmB;
+          return bpmB - bpmA;
         });
       } else if (order == "chronological") {
         cards = cards.sort((a, b) => {
