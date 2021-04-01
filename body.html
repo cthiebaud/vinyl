@@ -127,11 +127,26 @@
 
       <div class="card-body text-light bg-dark"><!-- style="display:none;" -->
         <div class="card-text" style="font-size: smaller; display: flex; margin-bottom:.5rem;">
-          <span style="flex-grow: 1;">{{val.text}}</span>
+          <span style="flex-grow: 1;">
+            {{val.text}}
+{{#if val.watch.0.url}}&nbsp;
+  <style>
+    #QWE {
+      fill: #6c757d;
+    }
+    #QWE:hover {
+      fill: white;
+    }
+  </style>
+<a id="QWE" type="button" class="btn btn-sm btn-outline-secondary" style="border: none; margin: 0; padding:0 5px; text-align: center;" href="{{val.watch.0.url}}" target="_{{key}}">
+  <img style="height:12px; width: auto; vertical-align:baseline;" src="/vinyl/svgs/external-svgrepo-com.svg">
+</a>
+{{/if}}
+          </span>
           <span class="text-muted" style="font-family:'Courier New', Courier, monospace; text-align: right; white-space: nowrap;">{{{val.date}}}</span>
         </div>
         <!-- <hr/> -->
-        <div class="d-flex justify-content-between align-items-end">
+        <div class="d-flex justify-content-between align-items-end" style="vertical-align: middle;">
           <div class="btn-group">
             {{#each val.watch}}
             <a type="button" id="watch_{{id}}" style="font-size: 10px;" title="{{title}}" class="vid btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="watch">watch
@@ -159,7 +174,11 @@
             <a type="button" id="url{{key}}" style="font-size: 10px;" class="instagram btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="insta">insta</a>
             {{/if}}
           </div>
-          <span class="text-muted" style="font-size: smaller; font-family:'Courier New', Courier, monospace; text-align: right;">{{{val.duration}}}{{#if val.bpm}}&nbsp;{{val.bpm}}bpm{{/if}}</span>
+          <span class="text-muted" style="font-size: smaller; font-family:'Courier New', Courier, monospace; text-align: right;">
+            {{{val.duration}}}
+            {{#if val.bpm}}&nbsp;{{val.bpm}}bpm{{/if}}
+            
+          </span>
         </div>
       </div>
     </div>
