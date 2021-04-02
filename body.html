@@ -9,60 +9,124 @@
         <img src="/vinyl/svgos/vinyl_icon.svg" style="width:30px; height: 30px;">
       </a>
       <style>
-        .myButton {
-          width:  32px; 
+        .my-select li {
+          background-color: #212529 !important;
+          color: #fff;
+        }
+
+        .my-select .btn {
+          background-color: #212529 !important;
+        }
+
+        .my-select .dropdown-menu {
+          margin: 0;
+          padding: 0;
+        }
+
+        .myButton,
+        .fas {
+          width: 32px;
+          min-width: 32px;
           height: 32px;
           background-repeat: no-repeat;
           background-size: cover;
         }
+
         #vinyl_share {
           background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M17%202.498a3.502%203.502%200%201%201-2.597%205.851l-4.558%202.605a3.5%203.5%200%200%201%200%202.092l4.557%202.606a3.502%203.502%200%201%201-.745%201.302L9.1%2014.348a3.502%203.502%200%201%201%200-4.698l4.557-2.604A3.502%203.502%200%200%201%2017%202.498zm0%2013.5a2.002%202.002%200%201%200%200%204.004%202.002%202.002%200%200%200%200-4.004zm-10.498-6a2.002%202.002%200%201%200%200%204.004%202.002%202.002%200%200%200%200-4.004zm10.498-6a2.002%202.002%200%201%200%200%204.004%202.002%202.002%200%200%200%200-4.004z%22%20fill%3D%22%23f8f8ff%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fsvg%3E);
         }
+
         #start_pause_button {
           background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2248%22%20height%3D%2248%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m13.75%208.412%2024.417%2012.705a3.25%203.25%200%200%201%200%205.766L13.75%2039.588A3.25%203.25%200%200%201%209%2036.705v-25.41a3.25%203.25%200%200%201%204.549-2.98l.201.097zm-1.154%202.218-.11-.047a.75.75%200%200%200-.986.712v25.41a.75.75%200%200%200%201.096.665l24.417-12.705a.75.75%200%200%200%200-1.33L12.596%2010.63z%22%20fill%3D%22%23f8f8ff%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fsvg%3E);
         }
+
         #order_button {
           background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2228%22%20height%3D%2228%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2.22%209.967%207.97%204.22l.085-.074.058-.038.072-.039.105-.04.105-.022.052-.005L8.5%204l.057.002.092.013.107.03.085.037.054.03.063.044.072.064%205.75%205.747a.75.75%200%200%201-.976%201.134l-.084-.073L9.25%206.56v16.69a.75.75%200%200%201-1.493.102l-.007-.102V6.56l-4.47%204.468a.75.75%200%200%201-.976.072l-.084-.072a.75.75%200%200%201-.073-.977l.073-.084zM19.5%204a.75.75%200%200%201%20.743.648l.007.102v16.687l4.47-4.467.084-.073a.75.75%200%200%201%201.049%201.05l-.073.083-5.728%205.727a.748.748%200%200%201-1.031.07l-.073-.07-5.728-5.727-.073-.084a.75.75%200%200%201-.007-.882l.08-.094.084-.073a.75.75%200%200%201%20.882-.007l.094.08%204.47%204.469V4.75l.007-.102A.75.75%200%200%201%2019.5%204z%22%20fill%3D%22%23f8f8ff%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fsvg%3E);
         }
-        #default_order_button {
+
+        #default_order_button,
+        .fa-horizontal-rule {
           background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M2%209.5a.5.5%200%200%201%20.5-.5h15a.5.5%200%200%201%200%201h-15a.5.5%200%200%201-.5-.5z%22%20fill%3D%22%23f8f8ff%22%2F%3E%3C%2Fsvg%3E);
         }
-        #chronological_order_button {
+
+        #chronological_order_button,
+        .fa-clock {
           background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2248%22%20height%3D%2248%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M24%205c10.493%200%2019%208.507%2019%2019s-8.507%2019-19%2019S5%2034.493%205%2024%2013.507%205%2024%205zm0%202.5C14.887%207.5%207.5%2014.887%207.5%2024S14.887%2040.5%2024%2040.5%2040.5%2033.113%2040.5%2024%2033.113%207.5%2024%207.5zM22.75%2012c.647%200%201.18.492%201.244%201.122l.006.128V24h6.75a1.25%201.25%200%200%201%20.128%202.494l-.128.006h-8a1.25%201.25%200%200%201-1.244-1.122l-.006-.128v-12c0-.69.56-1.25%201.25-1.25z%22%20fill%3D%22%23f8f8ff%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fsvg%3E);
         }
-        #bpm_order_button {
+
+        #bpm_order_button,
+        .fa-tachometer-alt {
           background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22m10.05%2015.42%206.256-8.475a.694.694%200%200%201%201.235.57l-.03.098-3.87%209.799a2.07%202.07%200%201%201-3.737-1.765l.069-.116.076-.11%206.257-8.476-6.257%208.476zm3.8-2.622-2.594%203.514-.04.062a.57.57%200%200%200%20.223.776l.067.032a.57.57%200%200%200%20.698-.238l.041-.083%201.605-4.063zm4.76-5.384a10.657%2010.657%200%200%201%202.022%202.172c.524.749%201.03%201.656%201.32%202.398a.75.75%200%201%201-1.397.547%208.241%208.241%200%200%200-.377-.812l-2.05%201.183a.75.75%200%200%201-.835-1.242l.085-.057%202.018-1.167-.23-.313a9.159%209.159%200%200%200-1.058-1.16l.38-.964c.038-.096.067-.194.087-.292l.024-.147.01-.146zm-2.63-1.561a1.713%201.713%200%200%200-.406.328l-.114.14-.54.732a9.203%209.203%200%200%200-2.17-.47v2.673a.75.75%200%200%201-1.493.102l-.007-.102v-2.69A9.108%209.108%200%200%200%206.659%208.2c-.816.572-1.527%201.322-2.119%202.205l2.082%201.202a.75.75%200%200%201-.658%201.344l-.092-.045-2.074-1.197c-.128.266-.246.54-.355.821a.75.75%200%200%201-1.399-.543C2.851%209.91%204.124%208.143%205.8%206.97A10.642%2010.642%200%200%201%2015.98%205.853z%22%20fill%3D%22%23f8f8ff%22%20fill-rule%3D%22nonzero%22%2F%3E%3C%2Fsvg%3E);
         }
-        #shuffle_order_button {
+
+        #shuffle_order_button,
+        .fa-random {
           background-image: url(data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.47%205.47a.75.75%200%200%200%200%201.06l.72.72h-3.813a1.75%201.75%200%200%200-1.575.987l-.21.434a.4.4%200%200%200%200%20.35l.568%201.174a.2.2%200%200%200%20.36%200l.632-1.304a.25.25%200%200%201%20.225-.141h3.812l-.72.72a.75.75%200%201%200%201.061%201.06l2-2a.75.75%200%200%200%200-1.06l-2-2a.75.75%200%200%200-1.06%200zM10.034%2015.329a.4.4%200%200%200%200-.35l-.57-1.174a.2.2%200%200%200-.36%200l-.63%201.304a.25.25%200%200%201-.226.141H5a.75.75%200%200%200%200%201.5h3.248a1.75%201.75%200%200%200%201.575-.987l.21-.434z%22%20fill%3D%22%23f8f8ff%22%2F%3E%3Cpath%20d%3D%22M16.47%2018.53a.75.75%200%200%201%200-1.06l.72-.72h-3.813a1.75%201.75%200%200%201-1.575-.987L8.473%208.89a.25.25%200%200%200-.225-.141H5a.75.75%200%200%201%200-1.5h3.248c.671%200%201.283.383%201.575.987l3.329%206.872a.25.25%200%200%200%20.225.141h3.812l-.72-.72a.75.75%200%201%201%201.061-1.06l2%202a.75.75%200%200%201%200%201.06l-2%202a.75.75%200%200%201-1.06%200z%22%20fill%3D%22%23f8f8ff%22%2F%3E%3C%2Fsvg%3E);
         }
       </style>
+      <style>
+        @font-face {
+          font-family: 'fontello';
+          src: url('/vinyl/fontello/font/fontello.eot?53464388');
+          src: url('/vinyl/fontello/font/fontello.eot?53464388#iefix') format('embedded-opentype'),
+            url('/vinyl/fontello/font/fontello.woff?53464388') format('woff'),
+            url('/vinyl/fontello/font/fontello.ttf?53464388') format('truetype'),
+            url('/vinyl/fontello/font/fontello.svg?53464388#fontello') format('svg');
+          font-weight: normal;
+          font-style: normal;
+        }
+
+        .demo-icon .dropdown-menu {
+          margin: 0;
+          padding: 0;
+        }
+
+        .demo-icon .dropdown-toggle {
+          background-color: transparent;
+          color: ghostwhite;
+          font-size: 19px;
+        }
+
+        .demo-icon .dropdown-item {
+          color: ghostwhite;
+        }
+
+        .demo-icon li {
+          background-color: transparent !important;
+        }
+
+        .demo-icon,
+        .demo-icon option,
+        .demo-icon li {
+          font-family: "fontello";
+          font-style: normal;
+          font-weight: normal;
+          font-size: 24px;
+          background-color: #212529 !important;
+          color: ghostwhite;
+          border: none;
+        }
+      </style>
+      <span>
+        <script>
+          $(document).ready(function () {
+            $('#mySelect').selectpicker();
+          });
+        </script>
+        <select id="mySelect" class="demo-icon form-select form-control" data-show-content="true" data-width="fit" onfocus="this.selectedIndex = -1;">
+          <option value="default" data-content="&#xe800;"></option>
+          <option value="chronological" data-content="&#xe801;"></option>
+          <option value="bpm" data-content="&#xe809;"></option>
+          <option value="shuffle" data-content="&#xe805;"></option>
+        </select>
+      </span>
+
+      <button id="start_pause_button" class="btn myButton" type="button" title="Play">
+        <!-- <img src="/vinyl/svgos/play.svg" style="width:30px; height: 30px;" title="Start / Stop Vinyl in Background"> -->
+      </button>
       <a id="vinyl_share" class="btn myButton" type="button" href="#" target="_facebook" title="Share on Facebook ...">
         <!-- <img src="/vinyl/svgos2/share-android-svgrepo-com.svg" style="width:30px; height: 30px;"> -->
       </a>
-      <div id="order_button_group" class="dropdown dropend">
-        <button class="btn btn-secondary dropdown-toggle myButton" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;">
-          <!-- <span id="order_button" class="myButton" style="display: inline-block;"></span> -->
-          <img src="/vinyl/svgs/arrow-sort-svgrepo-com.svg" style="width: 24px; height: auto;" title="Sort">
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1" style="min-width: auto;">
-          <li><button id="default_order_button" class="btn myButton" type="button" style="border:none;">
-              <!-- <img src="/vinyl/svgos/minus-svgrepo-com.svg" style="width:30px; height: 30px;" title="Default Sort"> -->
-            </button></li>
-          <li><button id="chronological_order_button" class="btn myButton" type="button" style="border:none;">
-              <!-- <img src="/vinyl/svgos/counterclockwise-rotation-svgrepo-com.svg" style="width:30px; height: 30px;" title="Chronological Sort"> -->
-            </button></li>
-          <li><button id="bpm_order_button" class="btn myButton" type="button" style="border:none;">
-              <!-- <img src="/vinyl/svgos/download-speed-svgrepo-com.svg" style="width:30px; height: 30px;" title="Beat Per Minute Sort"> -->
-            </button></li>
-          <li><button id="shuffle_order_button" class="btn myButton" type="button" style="border:none;">
-              <!-- <img src="/vinyl/svgos/shuffle.svg" style="width:30px; height: 30px;" title="Random Sort"> -->
-            </button></li>
-        </ul>
-      </div>
-      <button id="start_pause_button" class="btn myButton" type="button">
-        <!-- <img src="/vinyl/svgos/play.svg" style="width:30px; height: 30px;" title="Start / Stop Vinyl in Background"> -->
-      </button>
 
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false"
         aria-label="Toggle navigation" title="Display Info">

@@ -329,10 +329,34 @@ $(document).ready(function () {
       fadeIn($row.children(".col"), 111);
 
       if (!hide_sort_button) {
-        $("#default_order_button").on("click", (e) => {
+        $(".dropdown")
+          .on("show.bs.dropdown", function (e) {
+            $("#mySelect")[0].selectedIndex = -1;
+          })
+          .on(
+            "changed.bs.select",
+            function (e, clickedIndex, isSelected, previousValue) {
+              var selectedD = $(this)
+                .find("option")
+                .eq(clickedIndex)
+                .data("content");
+              $(".filter-option-inner-inner").html(selectedD);
+            }
+          );
+
+        $("#mySelect").change(function (e) {
+          console.log("changed!", this.value);
+          fadeOut($row.children(".col"), 222, () => {
+            $row.empty();
+            insertCards(data, $row, this.value);
+            fadeIn($row.children(".col"), 444);
+          });
+        });
+
+        /* $("#default_order_button").on("click", (e) => {
           fadeOut($row.children(".col"), 111, () => {
             $row.empty();
-            insertCards(data, $row);
+            insertCards(data, $row, "default");
             fadeIn($row.children(".col"), 222);
           });
         });
@@ -356,7 +380,7 @@ $(document).ready(function () {
             insertCards(data, $row, "shuffle");
             fadeIn($row.children(".col"), 666);
           });
-        });
+        }); */
       } else {
         $("#order_button_group").remove();
       }
