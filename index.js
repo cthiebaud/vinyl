@@ -5,6 +5,13 @@ import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
 $(document).ready(function () {
   const file = $("head meta[name='file']").attr("content") || "index.json";
   const $hide_sort_button = $("head meta[name='hide_sort_button']");
+  const $hide_brand = $("head meta[name='hide_brand']");
+  let hide_brand = false;
+  if ($hide_brand.length != 0) {
+    if ($hide_brand.attr("content") == "true") {
+      hide_brand = true;
+    }
+  }
   let hide_sort_button = false;
   if ($hide_sort_button.length != 0) {
     if ($hide_sort_button.attr("content") == "true") {
@@ -15,6 +22,10 @@ $(document).ready(function () {
   // fetch body
   $.get("/vinyl/body.html").done(function (body) {
     $("body").append(body);
+
+    if (hide_brand) {
+      $("#vinyl_brand").remove();
+    }
 
     const canonical = encodeURI($('head link[rel="canonical"]').attr("href"));
     $("#vinyl_share").attr(
@@ -382,7 +393,7 @@ $(document).ready(function () {
           });
         }); */
       } else {
-        $("#order_button_group").remove();
+        $("#sort_button").remove();
       }
     });
   });
