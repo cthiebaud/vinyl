@@ -312,7 +312,7 @@ $(document).ready(function () {
       $("head").append(styleTemplate($("title").text()));
 
       if (data.copyright) {
-        $("#copyright").text(data.copyright);
+        $("#copyright").html(data.copyright);
       }
 
       if (data.navbarheader) {
