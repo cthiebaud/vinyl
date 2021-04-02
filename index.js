@@ -358,8 +358,7 @@ $(document).ready(function () {
             }
           );
 
-        $("#sort_button #mySelect").change(function (e) {
-          console.log("changed!", this.value);
+        $("#sort_button #mySelect").change(function () {
           fadeOut($row.children(".col"), 222, () => {
             $row.empty();
             insertCards(data, $row, this.value);
