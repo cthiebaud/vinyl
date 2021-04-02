@@ -26,6 +26,9 @@ $(document).ready(function () {
     if (hide_brand) {
       $("#vinyl_brand").remove();
     }
+    if (hide_sort_button) {
+      $("#sort_button").remove();
+    }
 
     const canonical = encodeURI($('head link[rel="canonical"]').attr("href"));
     $("#vinyl_share").attr(
@@ -340,7 +343,7 @@ $(document).ready(function () {
       fadeIn($row.children(".col"), 111);
 
       if (!hide_sort_button) {
-        $(".dropdown")
+        $("#sort_button .dropdown")
           .on("show.bs.dropdown", function (e) {
             $("#mySelect")[0].selectedIndex = -1;
           })
@@ -355,7 +358,7 @@ $(document).ready(function () {
             }
           );
 
-        $("#mySelect").change(function (e) {
+        $("#sort_button #mySelect").change(function (e) {
           console.log("changed!", this.value);
           fadeOut($row.children(".col"), 222, () => {
             $row.empty();
@@ -363,37 +366,6 @@ $(document).ready(function () {
             fadeIn($row.children(".col"), 444);
           });
         });
-
-        /* $("#default_order_button").on("click", (e) => {
-          fadeOut($row.children(".col"), 111, () => {
-            $row.empty();
-            insertCards(data, $row, "default");
-            fadeIn($row.children(".col"), 222);
-          });
-        });
-        $("#chronological_order_button").on("click", (e) => {
-          fadeOut($row.children(".col"), 222, () => {
-            $row.empty();
-            insertCards(data, $row, "chronological");
-            fadeIn($row.children(".col"), 444);
-          });
-        });
-        $("#bpm_order_button").on("click", (e) => {
-          fadeOut($row.children(".col"), 222, () => {
-            $row.empty();
-            insertCards(data, $row, "bpm");
-            fadeIn($row.children(".col"), 444);
-          });
-        });
-        $("#shuffle_order_button").on("click", (e) => {
-          fadeOut($row.children(".col"), 333, () => {
-            $row.empty();
-            insertCards(data, $row, "shuffle");
-            fadeIn($row.children(".col"), 666);
-          });
-        }); */
-      } else {
-        $("#sort_button").remove();
       }
     });
   });
