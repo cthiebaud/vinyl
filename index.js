@@ -18,6 +18,7 @@ $(document).ready(function () {
       hide_sort_button = true;
     }
   }
+  let lastSortCriterium;
 
   // fetch body
   $.get("/vinyl/body.html").done(function (body) {
@@ -235,21 +236,35 @@ $(document).ready(function () {
       });
     }
 
-    function insertCards(datums, $parent, order) {
+    function insertCards(datums, $parent, order, inverse) {
+      lastSortCriterium = { order: order || "default", inverse: inverse || false};
       let cards = [...datums.order];
       if (order == "shuffle") {
         cards = shuffleArray(cards);
+      } else if (order == "default" && inverse) {
+        cards.reverse();
       } else if (order == "bpm") {
         cards = cards.sort((a, b) => {
           const bpmA = datums.songs[a].bpm;
           const bpmB = datums.songs[b].bpm;
-          return bpmB - bpmA;
+          return inverse ? (bpmA - bpmB) : (bpmB - bpmA);
+        });
+      } else if (order == "duration") {
+        cards = cards.sort((a, b) => {
+          const dA = datums.songs[a].duration.split(':');
+          const dB = datums.songs[b].duration.split(":");
+          let diff = dB[0] - dA[0];
+          if (diff == 0) {
+            diff = dB[1] - dA[1];
+          }
+          return inverse ? -diff : diff;
         });
       } else if (order == "chronological") {
         cards = cards.sort((a, b) => {
           const dateA = dayjs(datums.songs[a].date);
           const dateB = dayjs(datums.songs[b].date);
-          return dateA.isBefore(dateB) ? 1 : -1;
+          let diff =  dateA.isBefore(dateB) ? 1 : -1;
+          return inverse ? -diff : diff;
         });
       }
 
@@ -361,7 +376,11 @@ $(document).ready(function () {
         $("#sort_button #mySelect").change(function () {
           fadeOut($row.children(".col"), 222, () => {
             $row.empty();
-            insertCards(data, $row, this.value);
+            let inverse = false;
+            if (lastSortCriterium && lastSortCriterium.order === this.value) {
+              inverse = !lastSortCriterium.inverse;
+            }
+            insertCards(data, $row, this.value, inverse);
             fadeIn($row.children(".col"), 444);
           });
         });

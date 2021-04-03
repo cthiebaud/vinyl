@@ -1,0 +1,1 @@
+svgo -f ./svgs ./svg_s --datauri enc
