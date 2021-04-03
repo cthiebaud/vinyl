@@ -236,8 +236,15 @@ $(document).ready(function () {
       });
     }
 
-    function insertCards(datums, $parent, order, inverse) {
-      lastSortCriterium = { order: order || "default", inverse: inverse || false};
+    function sortCards(datums, order) {
+      let inverse = false;
+      if (lastSortCriterium && lastSortCriterium.order === order) {
+        inverse = !lastSortCriterium.inverse;
+      }
+      lastSortCriterium = {
+        order: order || "default",
+        inverse: inverse || false,
+      };
       let cards = [...datums.order];
       if (order == "shuffle") {
         cards = shuffleArray(cards);
@@ -247,11 +254,11 @@ $(document).ready(function () {
         cards = cards.sort((a, b) => {
           const bpmA = datums.songs[a].bpm;
           const bpmB = datums.songs[b].bpm;
-          return inverse ? (bpmA - bpmB) : (bpmB - bpmA);
+          return inverse ? bpmA - bpmB : bpmB - bpmA;
         });
       } else if (order == "duration") {
         cards = cards.sort((a, b) => {
-          const dA = datums.songs[a].duration.split(':');
+          const dA = datums.songs[a].duration.split(":");
           const dB = datums.songs[b].duration.split(":");
           let diff = dB[0] - dA[0];
           if (diff == 0) {
@@ -263,11 +270,15 @@ $(document).ready(function () {
         cards = cards.sort((a, b) => {
           const dateA = dayjs(datums.songs[a].date);
           const dateB = dayjs(datums.songs[b].date);
-          let diff =  dateA.isBefore(dateB) ? 1 : -1;
+          let diff = dateA.isBefore(dateB) ? 1 : -1;
           return inverse ? -diff : diff;
         });
       }
+      return cards;
+    }
 
+    function insertCards(datums, $parent, order) {
+      const cards = sortCards(datums, order);
       cards.forEach((key) => {
         $parent.append(
           $(
@@ -376,11 +387,7 @@ $(document).ready(function () {
         $("#sort_button #mySelect").change(function () {
           fadeOut($row.children(".col"), 222, () => {
             $row.empty();
-            let inverse = false;
-            if (lastSortCriterium && lastSortCriterium.order === this.value) {
-              inverse = !lastSortCriterium.inverse;
-            }
-            insertCards(data, $row, this.value, inverse);
+            insertCards(data, $row, this.value);
             fadeIn($row.children(".col"), 444);
           });
         });
