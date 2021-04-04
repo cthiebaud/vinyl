@@ -1,6 +1,7 @@
 "use strict";
 
 import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
+import { GlobalPlayer } from "./player.js";
 
 $(document).ready(function () {
   const file = $("head meta[name='file']").attr("content") || "index.json";
@@ -81,52 +82,8 @@ $(document).ready(function () {
     let theOtherPlayer = undefined;
     let $theButton = undefined;
 
-    let theBackground = {
-      start: () => {},
-      stop: () => {},
-      toggle: () => {},
-    };
+    let theGlobalPlayer = new GlobalPlayer();
 
-    const backgroundClass = (background, background_animated) => {
-      const start = () => {
-        $start_pause_button
-          .children("img")
-          .attr("src", "/vinyl/svgos/pause.svg");
-        // /vinyl/svgos/vinyl_rotating.svg
-        $("html").css({
-          background:
-            "url(" + background_animated + ") no-repeat center center",
-          "background-size": "contain",
-        });
-        return "started";
-      };
-      const stop = () => {
-        $start_pause_button
-          .children("img")
-          .attr("src", "/vinyl/svgos/play.svg");
-        // /vinyl/svgos/vinyl.svg
-        $("html").css({
-          background: "url(" + background + ") no-repeat center center",
-          "background-size": "contain",
-        });
-        return "stopped";
-      };
-      const toggle = () => {
-        if (
-          $start_pause_button.children("img").attr("src") ==
-          "/vinyl/svgos/pause.svg"
-        ) {
-          return stop();
-        } else {
-          return start();
-        }
-      };
-      return {
-        start: start,
-        stop: stop,
-        toggle: toggle,
-      };
-    };
 
     //  destroy if exists
     function destroyiframeIfExists($button) {
@@ -183,13 +140,13 @@ $(document).ready(function () {
       e.stopPropagation();
 
       // destroy
-      theBackground.stop();
+      theGlobalPlayer.stop();
       $theButton = destroyiframeIfExists($(e.currentTarget));
 
       if ($theButton) {
         // create
         if ($theButton.attr("class").indexOf("sound") != -1) {
-          theBackground.start();
+          theGlobalPlayer.start();
         }
         const styleAndParentCard = getStyleAndParentCard($theButton);
         const $iframe = $(
@@ -220,7 +177,7 @@ $(document).ready(function () {
           e.preventDefault();
           e.stopPropagation();
 
-          $firstButton.trigger("click");
+          $firstButton.first().trigger("click");
         } else if ($(e.currentTarget).data("url")) {
           e.preventDefault();
           e.stopPropagation();
@@ -308,16 +265,6 @@ $(document).ready(function () {
       addEventHandlers();
     }
 
-    const $start_pause_button = $("#start_pause_button");
-    $start_pause_button.on("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      if ("stopped" == theBackground.toggle()) {
-        /* destroyiframeIfExists(); */
-      }
-    });
-
     $.get(file).done(function (data) {
       if (no_recursion && data.no_recursion) {
         // remove recursive card
@@ -356,7 +303,8 @@ $(document).ready(function () {
           background: "url(" + data.background + ") no-repeat center center",
           "background-size": "contain",
         });
-        theBackground = backgroundClass(
+
+        theGlobalPlayer.setBackgroundClass(
           data.background,
           data.background_animated
         );
