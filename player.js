@@ -5,26 +5,30 @@ const backgroundClass = (
   background,
   background_animated
 ) => {
+
   const start = () => {
     $start_pause_button.removeClass("start_button");
     $start_pause_button.addClass("stop_button");
-    // /vinyl/svgos/vinyl_rotating.svg
+
     $("html").css({
       background: "url(" + background_animated + ") no-repeat center center",
       "background-size": "contain",
     });
+
     return true;
   };
   const stop = () => {
     $start_pause_button.addClass("start_button");
     $start_pause_button.removeClass("stop_button");
-    // /vinyl/svgos/vinyl.svg
+
     $("html").css({
       background: "url(" + background + ") no-repeat center center",
       "background-size": "contain",
     });
+
     return false;
   };
+
   const toggle = (playing) => {
     if (playing) {
       return stop();
@@ -32,6 +36,7 @@ const backgroundClass = (
       return start();
     }
   };
+
   return {
     start: start,
     stop: stop,
