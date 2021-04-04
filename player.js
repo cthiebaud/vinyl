@@ -6,7 +6,8 @@ const backgroundClass = (
   background_animated
 ) => {
   const start = () => {
-    $start_pause_button.children("img").attr("src", "/vinyl/svgos/pause.svg");
+    $start_pause_button.removeClass("start_button");
+    $start_pause_button.addClass("stop_button");
     // /vinyl/svgos/vinyl_rotating.svg
     $("html").css({
       background: "url(" + background_animated + ") no-repeat center center",
@@ -15,7 +16,8 @@ const backgroundClass = (
     return true;
   };
   const stop = () => {
-    $start_pause_button.children("img").attr("src", "/vinyl/svgos/play.svg");
+    $start_pause_button.addClass("start_button");
+    $start_pause_button.removeClass("stop_button");
     // /vinyl/svgos/vinyl.svg
     $("html").css({
       background: "url(" + background + ") no-repeat center center",
@@ -39,7 +41,7 @@ const backgroundClass = (
 
 export class GlobalPlayer {
   constructor(...args) {
-    console.log("GlobalPlayer constructed!");
+    // console.log("GlobalPlayer constructed!");
     this.playing = false;
     this.start = () => {
       this.playing = true;
