@@ -7,9 +7,9 @@
   "background": "",
   "background_animated": "",
   "no_recursion": "",
-  "order": ["", ""],
+  "order": ["example"],
   "songs": {
-    "XXX": {
+    "example": {
       "text": "",
       "duration": "0:00",
       "watch": [
