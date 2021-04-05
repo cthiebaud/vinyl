@@ -84,7 +84,6 @@ $(document).ready(function () {
 
     let theGlobalPlayer = new GlobalPlayer();
 
-
     //  destroy if exists
     function destroyiframeIfExists($button) {
       if (theOtherPlayer) {
@@ -159,9 +158,14 @@ $(document).ready(function () {
         $thePlayer.forEach((p) => styleAndParentCard.$parentCard.append(p));
         if ($theButton.attr("class").indexOf("vid") != -1) {
           theOtherPlayer = new Plyr("#yt-widget", {
-            autoplay: true,
             ratio: "4:3",
             settings: ["captions"],
+          });
+          theOtherPlayer.on("ready", (event) => {
+            theOtherPlayer.play();
+          });
+          theOtherPlayer.on("ended", (event) => {
+            console.log("Plyr ended");
           });
           $(theOtherPlayer.elements.container).css(styleAndParentCard.style);
         }
@@ -304,6 +308,7 @@ $(document).ready(function () {
           "background-size": "contain",
         });
 
+        theGlobalPlayer.setData(data);
         theGlobalPlayer.setBackgroundClass(
           data.background,
           data.background_animated
