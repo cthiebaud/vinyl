@@ -1,7 +1,7 @@
 "use strict";
 
 import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
-import { GlobalPlayer } from "./player.js";
+/* import { GlobalPlayer } from "./player.js"; */
 
 $(document).ready(function () {
   const file = $("head meta[name='file']").attr("content") || "index.json";
@@ -82,7 +82,7 @@ $(document).ready(function () {
     let theOtherPlayer = undefined;
     let $theButton = undefined;
 
-    let theGlobalPlayer = new GlobalPlayer();
+    /* let theGlobalPlayer = new GlobalPlayer(); */
 
     //  destroy if exists
     function destroyiframeIfExists($button) {
@@ -139,14 +139,14 @@ $(document).ready(function () {
       e.stopPropagation();
 
       // destroy
-      theGlobalPlayer.stop();
+      /* theGlobalPlayer.stop(); */
       $theButton = destroyiframeIfExists($(e.currentTarget));
 
       if ($theButton) {
         // create
-        if ($theButton.attr("class").indexOf("sound") != -1) {
+        /* if ($theButton.attr("class").indexOf("sound") != -1) {
           theGlobalPlayer.start();
-        }
+        } */
         const styleAndParentCard = getStyleAndParentCard($theButton);
         const $iframe = $(
           template({
@@ -308,14 +308,37 @@ $(document).ready(function () {
           "background-size": "contain",
         });
 
-        theGlobalPlayer.setData(data);
+        /* theGlobalPlayer.setData(data);
         theGlobalPlayer.setBackgroundClass(
           data.background,
           data.background_animated
-        );
+        ); */
       } else {
         $("#start_pause_button").remove();
       }
+
+      var exampleModal = document.getElementById("exampleModal");
+      exampleModal.addEventListener("show.bs.modal", function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget;
+        // Extract info from data-bs-* attributes
+        var recipient = button.getAttribute("data-bs-whatever");
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        const urlIDs = $("#songs")
+          .children()
+          .toArray()
+          .reduce((result, s) => {
+            const w = data.songs[$(s).attr("id").slice(0, -1)].watch;
+            if (w && w.length > 0) {
+              result.push(w[0].id);
+            }
+            return result;
+          }, []);
+        $(".modal-body").html(urlIDs.join('<br>'));
+      });
 
       const $row = $("#songs");
       insertCards(data, $row);
