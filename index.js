@@ -51,14 +51,11 @@ $(document).ready(function () {
       /*      bandlab: undefined, */
     };
 
-    Object.keys(templates).map(function (key, index) {
+    Object.keys(templates).map(function (key) {
       templates[key] = Handlebars.compile(
         document.getElementById(key + "-template").innerHTML
       );
     });
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const no_recursion = urlParams.get("no_recursion") || false;
 
     // http://stackoverflow.com/questions/20789373/shuffle-array-in-ng-repeat-angular
     // -> Fisher–Yates shuffle algorithm
@@ -270,14 +267,6 @@ $(document).ready(function () {
     }
 
     $.get(file).done(function (data) {
-      if (no_recursion && data.no_recursion) {
-        // remove recursive card
-        const index = data.order.indexOf(data.no_recursion);
-        if (index > -1) {
-          data.order.splice(index, 1);
-        }
-      }
-
       if (data.brandlink) {
         $("#vinyl_brand")
           .attr("href", data.brandlink)
@@ -302,31 +291,15 @@ $(document).ready(function () {
         $("#vinyl_brand img").attr("src", data.icon);
       }
 
-      if (data.background && data.background_animated) {
+      if (data.background) {
         $("html").css({
           background: "url(" + data.background + ") no-repeat center center",
           "background-size": "contain",
         });
-
-        /* theGlobalPlayer.setData(data);
-        theGlobalPlayer.setBackgroundClass(
-          data.background,
-          data.background_animated
-        ); */
-      } else {
-        $("#start_pause_button").remove();
       }
 
       var exampleModal = document.getElementById("exampleModal");
       exampleModal.addEventListener("show.bs.modal", function (event) {
-        // Button that triggered the modal
-        var button = event.relatedTarget;
-        // Extract info from data-bs-* attributes
-        var recipient = button.getAttribute("data-bs-whatever");
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
         const urlIDs = $("#songs")
           .children()
           .toArray()
