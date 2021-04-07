@@ -5,32 +5,12 @@ import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
 
 $(document).ready(function () {
   const file = $("head meta[name='file']").attr("content") || "index.json";
-  const $hide_sort_button = $("head meta[name='hide_sort_button']");
-  const $hide_brand = $("head meta[name='hide_brand']");
-  let hide_brand = false;
-  if ($hide_brand.length != 0) {
-    if ($hide_brand.attr("content") == "true") {
-      hide_brand = true;
-    }
-  }
-  let hide_sort_button = false;
-  if ($hide_sort_button.length != 0) {
-    if ($hide_sort_button.attr("content") == "true") {
-      hide_sort_button = true;
-    }
-  }
+
   let lastSortCriterium;
 
   // fetch body
   $.get("/vinyl/body.html").done(function (body) {
     $("body").append(body);
-
-    if (hide_brand) {
-      $("#vinyl_brand").remove();
-    }
-    if (hide_sort_button) {
-      $("#sort_button").remove();
-    }
 
     const canonical = encodeURI($('head link[rel="canonical"]').attr("href"));
     $("#vinyl_share").attr(
@@ -287,8 +267,8 @@ $(document).ready(function () {
         });
       }
 
-      if (data.icon) {
-        $("#vinyl_brand img").attr("src", data.icon);
+      if (data.brandLogo) {
+        $("#vinyl_brand img").attr("src", data.brandLogo);
       }
 
       if (data.background) {
@@ -317,30 +297,29 @@ $(document).ready(function () {
       insertCards(data, $row);
       fadeIn($row.children(".col"), 111);
 
-      if (!hide_sort_button) {
-        $("#sort_button .dropdown")
-          .on("show.bs.dropdown", function (e) {
-            $("#mySelect")[0].selectedIndex = -1;
-          })
-          .on(
-            "changed.bs.select",
-            function (e, clickedIndex, isSelected, previousValue) {
-              var selectedD = $(this)
-                .find("option")
-                .eq(clickedIndex)
-                .data("content");
-              $(".filter-option-inner-inner").html(selectedD);
-            }
-          );
+      $("#sort_button .dropdown")
+        .on("show.bs.dropdown", function (e) {
+          $("#mySelect")[0].selectedIndex = -1;
+        })
+        .on(
+          "changed.bs.select",
+          function (e, clickedIndex, isSelected, previousValue) {
+            var selectedD = $(this)
+              .find("option")
+              .eq(clickedIndex)
+              .data("content");
+            $(".filter-option-inner-inner").html(selectedD);
+          }
+        );
 
-        $("#sort_button #mySelect").change(function () {
-          fadeOut($row.children(".col"), 222, () => {
-            $row.empty();
-            insertCards(data, $row, this.value);
-            fadeIn($row.children(".col"), 444);
-          });
+      $("#sort_button #mySelect").change(function () {
+        fadeOut($row.children(".col"), 222, () => {
+          $row.empty();
+          insertCards(data, $row, this.value);
+          fadeIn($row.children(".col"), 444);
         });
-      }
+      });
+
     });
   });
 });
