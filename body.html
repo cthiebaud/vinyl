@@ -125,6 +125,14 @@
   </iframe>
 </script>
 
+<script id="score-template" type="text/x-handlebars-template">
+  <iframe 
+    id="score-widget" 
+    class="widgette" 
+    src="/scores/{{id}}.pdf">
+  </iframe>
+</script>
+
 <script id="song-template" type="text/x-handlebars-template">
   <div id="{{key}}_" class="col" style="opacity: 0.0;" data-date="{{val.date}}">
     <div id="{{key}}" class="card shadow-sm bg-secondary" style="position: relative;">
@@ -170,6 +178,9 @@
             {{/if}}
             {{#if val.instagram}}
             <a type="button" id="url{{key}}" style="font-size: 10px;" class="instagram btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="insta">insta</a>
+            {{/if}}
+            {{#if val.score}}
+            <a type="button" id="score_{{key}}" style="font-size: 10px;" class="score btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="score">score</a>
             {{/if}}
           </div>
           <span class="text-muted" style="font-size: smaller; font-family:'Courier New', Courier, monospace; text-align: right;">

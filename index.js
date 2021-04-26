@@ -28,6 +28,7 @@ $(document).ready(function () {
       markdown: undefined,
       url: undefined,
       instagram: undefined,
+      score: undefined,
       /*      bandlab: undefined, */
     };
 
