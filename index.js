@@ -32,6 +32,12 @@ $(document).ready(function () {
       /*      bandlab: undefined, */
     };
 
+    Handlebars.registerHelper({
+      'isNotBoolean:' ( condition, first, second ) {
+        return condition !== true ? first : second;
+      }
+    });
+
     Object.keys(templates).map(function (key) {
       templates[key] = Handlebars.compile(
         document.getElementById(key + "-template").innerHTML
