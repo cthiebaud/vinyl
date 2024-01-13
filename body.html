@@ -141,12 +141,6 @@
         <div class="card-text" style="display: flex; margin-bottom:.5rem;">
           <span style="flex-grow: 1;">
             <span>{{val.text}}</span>
-            {{#if val.watch.0.url}}<span>
-              <a type="button" class="btn btn-sm btn-outline-secondary" style="border: none; margin: 0; padding:0 5px; text-align: center;" href="{{val.watch.0.url}}" target="_{{key}}">
-                <img style="height:12px; width: auto; vertical-align:baseline;" src="/vinyl/svgos/external-svgrepo-com.svg">
-              </a>
-              </span>
-            {{/if}}
           </span>
           <span class="text-muted font-monospace" style="text-align: right; white-space: nowrap;">{{{val.date}}}</span>
         </div>
@@ -174,10 +168,18 @@
             <a type="button" id="score_{{key}}" class="score btn btn-sm btn-outline-secondary font-monospace" data-id="{{isNotBoolean: val.score val.score key}}" data-text="score">score</a>
             {{/if}}
           </div>
-          <span class="text-muted font-monospace" style="text-align: right;">
+          <div>
+            {{#if val.watch.0.url}}<span>
+              <a type="button" class="btn btn-sm btn-outline-secondary" style="border: none; margin: 0; padding:0 5px; text-align: center;" href="{{val.watch.0.url}}" target="_{{key}}">
+                <img style="height:16px; width: auto; vertical-align:baseline;" src="/vinyl/svgos/external-svgrepo-com.svg">
+              </a>
+              </span>
+            {{/if}}
+          </div>
+          <div class="text-muted font-monospace" style="text-align: right;">
             <span>{{{val.duration}}}</span>
             {{#if val.bpm}}<span>{{val.bpm}}bpm</span>{{/if}}
-          </span>
+          </div>
         </div>
       </div>
     </div>
