@@ -92,7 +92,7 @@ $(document).ready(function () {
         }
       }
       if ($button) {
-        $button.html("<span style='color:lightblue'>close&nbsp;×</span>");
+        $button.html("<span'>close&nbsp;×</span>"); // style='color:lightblue
       }
       return $button;
     }
@@ -111,7 +111,7 @@ $(document).ready(function () {
           left: pos.left,
           width: ow + "px",
           height: oh + "px",
-          "background-color": "#212529",
+          // "background-color": "#212529",
         },
         boh: { ow: ow, oh: oh },
         $parentCard: $parentCard,
