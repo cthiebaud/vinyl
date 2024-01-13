@@ -81,7 +81,6 @@
     @media (min-width: 768px) {
       #vinyl_brand::after {
         content: "{{{this}}}";
-        font-size: 14pt;
         margin-left: .5rem;
       }
     }
@@ -139,19 +138,11 @@
       <img class="img-fluid" src="./{{covers}}/{{cover}}" data-url="{{val.link}}" alt="">
 
       <div class="card-body">
-        <div class="card-text" style="font-size: smaller; display: flex; margin-bottom:.5rem;">
+        <div class="card-text" style="display: flex; margin-bottom:.5rem;">
           <span style="flex-grow: 1;">
             <span>{{val.text}}</span>
             {{#if val.watch.0.url}}<span>
-              <style>
-                #QWE {
-                  fill: #6c757d;
-                }
-                #QWE:hover {
-                  fill: white;
-                }
-              </style>
-              <a id="QWE" type="button" class="btn btn-sm btn-outline-secondary" style="border: none; margin: 0; padding:0 5px; text-align: center;" href="{{val.watch.0.url}}" target="_{{key}}">
+              <a type="button" class="btn btn-sm btn-outline-secondary" style="border: none; margin: 0; padding:0 5px; text-align: center;" href="{{val.watch.0.url}}" target="_{{key}}">
                 <img style="height:12px; width: auto; vertical-align:baseline;" src="/vinyl/svgos/external-svgrepo-com.svg">
               </a>
               </span>
@@ -162,28 +153,28 @@
         <div class="d-flex justify-content-between align-items-end" style="vertical-align: middle;">
           <div class="btn-group">
             {{#each val.watch}}
-            <a type="button" id="watch_{{id}}" style="font-size: 10px;" title="{{title}}" class="vid btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="watch">watch
+            <a type="button" id="watch_{{id}}" title="{{title}}" class="vid btn btn-sm btn-outline-secondary font-monospace" data-id="{{id}}" data-text="watch">watch
             </a>
             {{/each}}
             {{#each val.listen}}
-            <a type="button" id="listen_{{id}}" style="font-size: 10px;" title="{{title}}" class="sound btn btn-sm btn-outline-secondary" data-id="{{id}}" data-text="listen">listen
+            <a type="button" id="listen_{{id}}" title="{{title}}" class="sound btn btn-sm btn-outline-secondary font-monospace" data-id="{{id}}" data-text="listen">listen
             </a>
             {{/each}}
             {{#if val.markdown}}
-            <a type="button" id="read_{{key}}" style="font-size: 10px;" class="markdown btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="read">read
+            <a type="button" id="read_{{key}}" class="markdown btn btn-sm btn-outline-secondary font-monospace" data-id="{{key}}" data-text="read">read
             </a>
             {{/if}}
             {{#if val.url}}
-            <a type="button" id="url{{key}}" style="font-size: 10px;" class="url btn btn-sm btn-outline-secondary" data-id="{{val.url}}" data-text="mise en abyme">mise en abyme</a>
+            <a type="button" id="url{{key}}" class="url btn btn-sm btn-outline-secondary font-monospace" data-id="{{val.url}}" data-text="mise en abyme">mise en abyme</a>
             {{/if}}
             {{#if val.instagram}}
-            <a type="button" id="url{{key}}" style="font-size: 10px;" class="instagram btn btn-sm btn-outline-secondary" data-id="{{key}}" data-text="insta">insta</a>
+            <a type="button" id="url{{key}}" class="instagram btn btn-sm btn-outline-secondary font-monospace" data-id="{{key}}" data-text="insta">insta</a>
             {{/if}}
             {{#if val.score}}
-            <a type="button" id="score_{{key}}" style="font-size: 10px;" class="score btn btn-sm btn-outline-secondary" data-id="{{isNotBoolean: val.score val.score key}}" data-text="score">score</a>
+            <a type="button" id="score_{{key}}" class="score btn btn-sm btn-outline-secondary font-monospace" data-id="{{isNotBoolean: val.score val.score key}}" data-text="score">score</a>
             {{/if}}
           </div>
-          <span class="text-muted font-monospace" style="font-size: smaller; text-align: right;">
+          <span class="text-muted font-monospace" style="text-align: right;">
             <span>{{{val.duration}}}</span>
             {{#if val.bpm}}<span>{{val.bpm}}bpm</span>{{/if}}
           </span>

@@ -39,7 +39,6 @@ header .list-unstyled a {
 }
 
 header .list-unstyled li {
-  font-size: smaller;
 }
 
 header .list-unstyled img {
@@ -53,8 +52,8 @@ header .list-unstyled img {
 }
 
 .my-select li {
-  /* background-color: #212529 !important; */
-  color: #fff;
+  /* background-color: #212529 !important; 
+  color: #fff;*/
 }
 
 .my-select .btn {
@@ -142,7 +141,6 @@ header .list-unstyled img {
 .demo-icon .dropdown-toggle {
   /* background-color: transparent;
   color: ghostwhite; */
-  font-size: 19px;
 }
 
 .demo-icon .dropdown-item {
@@ -163,7 +161,6 @@ header .list-unstyled img {
   /* font-family: "fontello"; */
   font-style: normal;
   font-weight: normal;
-  font-size: 24px;
   /* background-color: #212529 !important;
   color: ghostwhite; */
   border: none;
