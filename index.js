@@ -182,14 +182,12 @@ $(document).ready(function () {
     }
 
     let lastOrder = 'chronological'
-    
+
     function sortCards(datums, order) {
       order = order || lastOrder
       let cards = [...datums.order];
-      if (order == "shuffle") {
+      if (order == "random") {
         cards = shuffleArray(cards);
-      } else if (typeof order === 'undefined') {
-        cards.reverse();
       } else if (order == "alphabetical") {
         cards = cards.sort((a, b) => {
           const textA = datums.songs[a].text;
@@ -221,13 +219,16 @@ $(document).ready(function () {
           return inverse ? -diff : diff;
         });
       }
-        // Disable the clicked item
-      $(`#sort_button #${order}`).addClass('disabled');
+      // Disable the clicked item
+      if (order !== 'random') {
+        $(`#sort_button #${order}`).addClass('disabled');
+      }
       $('#sort_button [data-bs-toggle="dropdown"]').text(order)
+      const btnCheck = document.getElementById('btn-check')
       if (order === "random") {
-        $(`#sort_button #btn-check`).addClass('disabled');
+        btnCheck.disabled = true
       } else {
-        $(`#sort_button #btn-check`).removeClass('disabled');
+        btnCheck.disabled = false
       }
       lastOrder = order;
 
@@ -312,8 +313,10 @@ $(document).ready(function () {
         // Set the text of the dropdown-toggle to the selected item
         $('#sort_button .dropdown-toggle').text(selectedItemText);
 
-        // Disable the clicked item
-        $(this).addClass('disabled');
+        // Disable the clicked item if it is not random (random is never disabled)
+        if (this.id !== 'random') {
+          $(this).addClass('disabled');
+        }
 
         // Enable every other dropdown item
         $('.dropdown-item').not(this).removeClass('disabled');
