@@ -251,9 +251,9 @@ $(document).ready(function () {
                 if (key == "brouillard") {
                   const random_boolean = Math.random() < 0.5;
                   if (random_boolean) {
-                    return "psycho_I.jpg";
+                    return "brouillard-psycho_I.jpg";
                   } else {
-                    return "psycho_II.jpg";
+                    return "brouillard-psycho_II.jpg";
                   }
                 }
                 return key + ".jpg";
