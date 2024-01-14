@@ -44,12 +44,16 @@
         </select>
       </span>
 
+      <!-- 
       <button id="start_pause_button" class="btn myButton start_button" type="button" title="Play All" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        <!-- <img src="/vinyl/svgos/play.svg" style="width:30px; height: 30px;" title="Start / Stop Vinyl in Background"> -->
+        <img src="/vinyl/svgos/play.svg" style="width:30px; height: 30px;" title="Start / Stop Vinyl in Background"> 
       </button>
+      -->
+      <!-- 
       <a id="vinyl_share" class="btn myButton" type="button" href="#" target="_facebook" title="Share on Facebook ...">
-        <!-- <img src="/vinyl/svgos2/share-android-svgrepo-com.svg" style="width:30px; height: 30px;"> -->
+        <img src="/vinyl/svgos2/share-android-svgrepo-com.svg" style="width:30px; height: 30px;">
       </a>
+       -->
 
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false"
         aria-label="Toggle navigation" title="Display Info">
@@ -142,7 +146,6 @@
           <span style="flex-grow: 1;">
             <span>{{val.text}}</span>
           </span>
-          <span class="text-muted font-monospace" style="text-align: right; white-space: nowrap;">{{{val.date}}}</span>
         </div>
         <div class="d-flex justify-content-between align-items-end" style="vertical-align: middle;">
           <div class="btn-group">
@@ -168,17 +171,20 @@
             <a type="button" id="score_{{key}}" class="score btn btn-sm btn-outline-secondary font-monospace" data-id="{{isNotBoolean: val.score val.score key}}" data-text="score">score</a>
             {{/if}}
           </div>
+          <div class="text-muted font-monospace" style="text-align: right;font-size: smaller; text-align: center;">
+            <span>{{{val.duration}}}</span>
+            {{#if val.bpm}}<span>{{val.bpm}}bpm</span>{{/if}}
+            {{#if val.date}}
+            <br/><span class="text-muted font-monospace" style="white-space: nowrap;">{{{val.date}}}</span>
+            {{/if}}
+          </div>
           <div>
             {{#if val.watch.0.url}}<span>
-              <a type="button" class="btn btn-sm btn-outline-secondary" style="border: none; margin: 0; padding:0 5px; text-align: center;" href="{{val.watch.0.url}}" target="_{{key}}">
-                <img style="height:16px; width: auto; vertical-align:baseline;" src="/vinyl/svgos/external-svgrepo-com.svg">
+              <a type="button" class="btn btn-sm btn-outline-secondary" href="{{val.watch.0.url}}" target="_{{key}}">
+                <img style="height:14px; width: auto; vertical-align:middle;" src="/vinyl/svgos/external-svgrepo-com.svg">
               </a>
               </span>
             {{/if}}
-          </div>
-          <div class="text-muted font-monospace" style="text-align: right;">
-            <span>{{{val.duration}}}</span>
-            {{#if val.bpm}}<span>{{val.bpm}}bpm</span>{{/if}}
           </div>
         </div>
       </div>

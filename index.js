@@ -92,7 +92,7 @@ $(document).ready(function () {
         }
       }
       if ($button) {
-        $button.html("<span'>close&nbsp;×</span>"); // style='color:lightblue
+        $button.html("<span'>close</span>"); // style='color:lightblue
       }
       return $button;
     }
