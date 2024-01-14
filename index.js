@@ -294,21 +294,6 @@ $(document).ready(function () {
         });
       }
 
-      var exampleModal = document.getElementById("exampleModal");
-      exampleModal.addEventListener("show.bs.modal", function (event) {
-        const urlIDs = $("#songs")
-          .children()
-          .toArray()
-          .reduce((result, s) => {
-            const w = data.songs[$(s).attr("id").slice(0, -1)].watch;
-            if (w && w.length > 0) {
-              result.push(w[0].id);
-            }
-            return result;
-          }, []);
-        $(".modal-body").html(urlIDs.join('<br>'));
-      });
-
       const $row = $("#songs");
       insertCards(data, $row);
       fadeIn($row.children(".col"), 111);
