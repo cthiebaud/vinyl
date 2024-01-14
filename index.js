@@ -16,8 +16,8 @@ $(document).ready(function () {
     $("#vinyl_share").attr(
       "href",
       "https://www.facebook.com/sharer/sharer.php?u=" +
-        canonical +
-        "&amp;src=sdkpreparse"
+      canonical +
+      "&amp;src=sdkpreparse"
     );
 
     const templates = {
@@ -33,7 +33,7 @@ $(document).ready(function () {
     };
 
     Handlebars.registerHelper({
-      'isNotBoolean:' ( condition, first, second ) {
+      'isNotBoolean:'(condition, first, second) {
         return condition !== true ? first : second;
       }
     });
@@ -183,9 +183,11 @@ $(document).ready(function () {
 
     function sortCards(datums, order) {
       let inverse = false;
+      order |= 'chronological'
       if (lastSortCriterium && lastSortCriterium.order === order) {
         inverse = !lastSortCriterium.inverse;
       }
+
       lastSortCriterium = {
         order: order || "default",
         inverse: inverse || false,
@@ -193,8 +195,15 @@ $(document).ready(function () {
       let cards = [...datums.order];
       if (order == "shuffle") {
         cards = shuffleArray(cards);
-      } else if (order == "default" && inverse) {
+      } else if (typeof order === 'undefined') {
         cards.reverse();
+      } else if (order == "alphabetical") {
+        cards = cards.sort((a, b) => {
+          const textA = datums.songs[a].text;
+          const textB = datums.songs[b].text;
+          const comp = textA.toLowerCase().localeCompare(textB.toLowerCase())
+          return inverse ?  -comp : comp;
+        });
       } else if (order == "bpm") {
         cards = cards.sort((a, b) => {
           const bpmA = datums.songs[a].bpm;
@@ -262,7 +271,7 @@ $(document).ready(function () {
       const styleTemplate = Handlebars.compile(
         document.getElementById("style-template").innerHTML
       );
-      $("head").append(styleTemplate($("title").text()));
+      // $("head").append(styleTemplate($("title").text()));
 
       if (data.copyright) {
         $("#copyright").html(data.copyright);
@@ -311,11 +320,22 @@ $(document).ready(function () {
         .on(
           "changed.bs.select",
           function (e, clickedIndex, isSelected, previousValue) {
-            var selectedD = $(this)
+            var selectedElem = $(this)
               .find("option")
-              .eq(clickedIndex)
-              .data("content");
-            $(".filter-option-inner-inner").html(selectedD);
+              .eq(clickedIndex);
+            var selectedData = selectedElem.data("content");
+            var classesToRemove = [
+              'sort_default',
+              'sort_chronological',
+              'sort_bpm',
+              'sort_duration',
+              'sort_shuffle',
+            ];
+            var qwe = $('#mySelect').parent()
+            const classesToRemoveString = classesToRemove.join(' ');
+            qwe.removeClass(classesToRemoveString);
+            qwe.addClass(`sort_${selectedElem[0].value}`);
+            selectedElem.html(selectedData);
           }
         );
 
