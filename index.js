@@ -6,7 +6,7 @@ import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
 $(document).ready(function () {
   const file = $("head meta[name='file']").attr("content") || "index.json";
 
-  let lastSortCriterium;
+  let inverse = false;
 
   // fetch body
   $.get("/vinyl/body.html").done(function (body) {
@@ -181,17 +181,10 @@ $(document).ready(function () {
       });
     }
 
+    let lastOrder = 'chronological'
+    
     function sortCards(datums, order) {
-      let inverse = false;
-      order |= 'chronological'
-      if (lastSortCriterium && lastSortCriterium.order === order) {
-        inverse = !lastSortCriterium.inverse;
-      }
-
-      lastSortCriterium = {
-        order: order || "default",
-        inverse: inverse || false,
-      };
+      order = order || lastOrder
       let cards = [...datums.order];
       if (order == "shuffle") {
         cards = shuffleArray(cards);
@@ -202,7 +195,7 @@ $(document).ready(function () {
           const textA = datums.songs[a].text;
           const textB = datums.songs[b].text;
           const comp = textA.toLowerCase().localeCompare(textB.toLowerCase())
-          return inverse ?  -comp : comp;
+          return inverse ? -comp : comp;
         });
       } else if (order == "bpm") {
         cards = cards.sort((a, b) => {
@@ -228,6 +221,16 @@ $(document).ready(function () {
           return inverse ? -diff : diff;
         });
       }
+        // Disable the clicked item
+      $(`#sort_button #${order}`).addClass('disabled');
+      $('#sort_button [data-bs-toggle="dropdown"]').text(order)
+      if (order === "random") {
+        $(`#sort_button #btn-check`).addClass('disabled');
+      } else {
+        $(`#sort_button #btn-check`).removeClass('disabled');
+      }
+      lastOrder = order;
+
       return cards;
     }
 
@@ -298,37 +301,44 @@ $(document).ready(function () {
       insertCards(data, $row);
       fadeIn($row.children(".col"), 111);
 
-      $("#sort_button .dropdown")
-        .on("show.bs.dropdown", function (e) {
-          $("#mySelect")[0].selectedIndex = -1;
-        })
-        .on(
-          "changed.bs.select",
-          function (e, clickedIndex, isSelected, previousValue) {
-            var selectedElem = $(this)
-              .find("option")
-              .eq(clickedIndex);
-            var selectedData = selectedElem.data("content");
-            var classesToRemove = [
-              'sort_default',
-              'sort_chronological',
-              'sort_bpm',
-              'sort_duration',
-              'sort_shuffle',
-            ];
-            var qwe = $('#mySelect').parent()
-            const classesToRemoveString = classesToRemove.join(' ');
-            qwe.removeClass(classesToRemoveString);
-            qwe.addClass(`sort_${selectedElem[0].value}`);
-            selectedElem.html(selectedData);
-          }
-        );
+      // Click handler for dropdown items
+      $('#sort_button .dropdown-item').on('click', function () {
+        // Access the text content of the clicked item
+        var selectedItemText = $(this).text();
 
-      $("#sort_button #mySelect").change(function () {
-        fadeOut($row.children(".col"), 222, () => {
+        // Perform actions based on the selected item
+        console.log('Selected item:', selectedItemText);
+
+        // Set the text of the dropdown-toggle to the selected item
+        $('#sort_button .dropdown-toggle').text(selectedItemText);
+
+        // Disable the clicked item
+        $(this).addClass('disabled');
+
+        // Enable every other dropdown item
+        $('.dropdown-item').not(this).removeClass('disabled');
+
+        // Add your custom logic here
+        fadeOut($row.children(".col"), 100, () => {
           $row.empty();
-          insertCards(data, $row, this.value);
-          fadeIn($row.children(".col"), 444);
+          insertCards(data, $row, selectedItemText);
+          fadeIn($row.children(".col"), 200);
+        });
+
+      });
+
+      // Click handler for the checkbox
+      $('#sort_button #btn-check').on('click', function () {
+        // Check if the checkbox is checked or unchecked
+        var isChecked = $(this).prop('checked');
+        inverse = isChecked
+        // Perform actions based on the checkbox state
+        console.log('inverse is :', isChecked);
+        // Add your custom logic here
+        fadeOut($row.children(".col"), 100, () => {
+          $row.empty();
+          insertCards(data, $row);
+          fadeIn($row.children(".col"), 200);
         });
       });
 

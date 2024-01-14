@@ -8,31 +8,29 @@
       <a id="vinyl_share" class="btn myButton" type="button" href="#" target="_facebook" title="Share on Facebook ...">
         <img src="/vinyl/svgos2/share-android-svgrepo-com.svg" style="width:30px; height: 30px;">
       </a>
-       -->
-
-       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false"
-        aria-label="Toggle navigation" title="Display Info">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      
+      <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false"
+      aria-label="Toggle navigation" title="Display Info">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    -->
 
       <a id="vinyl_brand" class="navbar-brand d-flex align-items-center" title="Title">
         <img src="/vinyl/svgos/vinyl_icon.svg" style="width:auto; height: 30px; margin-left:.5rem;" title="Logo">
       </a>
-
-      <span id="sort_button">
-        <script>
-          $(document).ready(function () {
-            $('#mySelect').selectpicker();
-          });
-        </script>
-        <select id="mySelect" class="form-select form-control" data-show-content="true" data-width="fit" onfocus="this.selectedIndex = -1;">
-          <option value="chronological" data-content="chronological" selected></option>
-          <option value="alphabetical" data-content="alphabetical"></option>
-          <option value="bpm" data-content="bpm" style="display:none;"></option>
-          <option value="duration" data-content="duration"></option>
-          <option value="shuffle" data-content="random"></option>
-        </select>
-      </span>
+      
+      <div id="sort_button" class="input-group input-group-sm" style="width: unset;">
+        <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
+        <ul class="dropdown-menu">
+          <li><a id="chronological" class="dropdown-item" href="#">chronological</a></li>
+          <li><a id="alphabetical" class="dropdown-item" href="#">alphabetical</a></li>
+          <li><a id="duration" class="dropdown-item" href="#">duration</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><class= id="random"class="dropdown-item" href="#">random</a></li>
+        </ul>
+        <input type="checkbox" class="btn-check btn-outline-secondary" id="btn-check" autocomplete="off">
+        <label class="btn btn-outline-secondary" for="btn-check" style="font-size: 24px;">⇅</label>
+      </div>
 
     </div>
   </div>
