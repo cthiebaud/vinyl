@@ -17,6 +17,11 @@ body {
   cursor: pointer;
 }
 
+.card-legend > * {
+  padding-top: 2px;
+  font-size: smaller;
+}
+
 header .list-unstyled a {
   text-decoration: none;
 }
