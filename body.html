@@ -69,7 +69,17 @@
 </script>
 
 <script id="vid-template" type="text/x-handlebars-template">
-  <div id="yt-widget" class="widgette" data-plyr-provider="youtube" data-plyr-embed-id="{{id}}"></div>
+  <!-- div id="yt-widget" class="widgette" data-plyr-provider="youtube" data-plyr-embed-id="{{id}}"></!-->
+  <media-player autoplay src="youtube/{{id}}" style="">
+    <media-provider></media-provider>
+    <media-video-layout></media-video-layout>
+    <!-- media-controls class="vds-controls">
+      <div class="vds-controls-spacer"></div>
+      <media-controls-group class="vds-controls-group d-flex flex-row-reverse">
+        <media-time type="current" style="color: white;"></media-time>
+      </media-controls-group>
+    </!-->
+  </media-player>
 </script>
 
 <script id="sound-template" type="text/x-handlebars-template">

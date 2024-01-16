@@ -141,17 +141,19 @@ $(document).ready(function () {
         $thePlayer = [$iframe];
         $thePlayer.forEach((p) => styleAndParentCard.$parentCard.append(p));
         if ($theButton.attr("class").indexOf("vid") != -1) {
-          theOtherPlayer = new Plyr("#yt-widget", {
+          /* theOtherPlayer = new Plyr("#yt-widget", {
             ratio: "4:3",
             settings: ["captions"],
-          });
+          }); 
           theOtherPlayer.on("ready", (event) => {
+            console.log("Plyr play");
             theOtherPlayer.play();
           });
           theOtherPlayer.on("ended", (event) => {
             console.log("Plyr ended");
           });
           $(theOtherPlayer.elements.container).css(styleAndParentCard.style);
+          */
         }
       }
     }
@@ -281,8 +283,8 @@ $(document).ready(function () {
         });
       }
 
-      if (data.brandLogo) {
-        $("#vinyl_brand img").attr("src", data.brandLogo);
+      if (data.brandLogoSVG) {
+        $("#vinyl_brand img").attr("src", data.brandLogoSVG + ".svg");
       }
 
       if (data.background) {
