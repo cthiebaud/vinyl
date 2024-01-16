@@ -1,11 +1,13 @@
 "use strict";
 
 import { fadeIn, fadeOut } from "./fadeInFadeOut.js";
-/* import { GlobalPlayer } from "./player.js"; */
+import { PlayList } from "./PlayList.js";
 
 $(document).ready(function () {
   const file = $("head meta[name='file']").attr("content") || "index.json";
 
+  let playList = null
+  let lastOrder = 'chronological'
   let inverse = false;
 
   // fetch body
@@ -65,8 +67,6 @@ $(document).ready(function () {
     let $thePlayer = undefined;
     let theOtherPlayer = undefined;
     let $theButton = undefined;
-
-    /* let theGlobalPlayer = new GlobalPlayer(); */
 
     //  destroy if exists
     function destroyiframeIfExists($button) {
@@ -183,8 +183,6 @@ $(document).ready(function () {
       });
     }
 
-    let lastOrder = 'chronological'
-
     function sortCards(datums, order) {
       order = order || lastOrder
       let cards = [...datums.order];
@@ -284,7 +282,8 @@ $(document).ready(function () {
       }
 
       if (data.brandLogoSVG) {
-        $("#vinyl_brand img").attr("src", data.brandLogoSVG + ".svg");
+        const vinyl_brand_svg = document.getElementById('vinyl_brand_svg')
+        playList = new PlayList(vinyl_brand_svg, data.brandLogoSVG)
       }
 
       if (data.background) {
