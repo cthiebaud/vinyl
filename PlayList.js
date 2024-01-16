@@ -10,7 +10,7 @@ export class PlayList {
         element.addEventListener('click', clickEvent => {
             clickEvent.preventDefault();
             clickEvent.stopPropagation();
-            alert("nothing to see")
+            alert("work in progress")
         })
     }
     start() {
