@@ -195,12 +195,6 @@ $(document).ready(function () {
           const comp = textA.toLowerCase().localeCompare(textB.toLowerCase())
           return inverse ? -comp : comp;
         });
-      } else if (order == "bpm") {
-        cards = cards.sort((a, b) => {
-          const bpmA = datums.songs[a].bpm;
-          const bpmB = datums.songs[b].bpm;
-          return inverse ? bpmA - bpmB : bpmB - bpmA;
-        });
       } else if (order == "duration") {
         cards = cards.sort((a, b) => {
           const dA = datums.songs[a].duration.split(":");
