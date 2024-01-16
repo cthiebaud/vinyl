@@ -1,28 +1,28 @@
 // Playlist.js
 
 export class PlayList {
-    constructor(element, brandLogoSVGarray) {
+    constructor(element, brandLogoImages) {
         this.element = element
-        this.element.dataset.brandLogoSVG = brandLogoSVGarray[0]
-        this.element.dataset.brandLogoSVGstarted = brandLogoSVGarray[1]
-        this.element.src = this.element.dataset.brandLogoSVG
+        this.element.dataset.brandLogoImage = brandLogoImages[0]
+        this.element.dataset.brandLogoImagePlaying = brandLogoImages[1]
+        this.element.src = this.element.dataset.brandLogoImage
         this.parent = element.parentNode
         parent.addEventListener('click', clickEvent => {
             this.toggle()
         })
     }
     start() {
-        this.element.src = this.element.dataset.brandLogoSVGstarted
+        this.element.src = this.element.dataset.brandLogoImagePlaying
     }
     toggle() {
-        if (this.element.src.endsWith(this.element.dataset.brandLogoSVG)) {
+        if (this.element.src.endsWith(this.element.dataset.brandLogoImage)) {
             this.start()
         } else {
             this.stop()
         }
     }
     stop() {
-        this.element.src = this.element.dataset.brandLogoSVG
+        this.element.src = this.element.dataset.brandLogoImage
     }
 }
 

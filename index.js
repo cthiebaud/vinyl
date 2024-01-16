@@ -31,7 +31,6 @@ $(document).ready(function () {
       url: undefined,
       instagram: undefined,
       score: undefined,
-      /*      bandlab: undefined, */
     };
 
     Handlebars.registerHelper({
@@ -65,15 +64,10 @@ $(document).ready(function () {
     }
 
     let $thePlayer = undefined;
-    let theOtherPlayer = undefined;
     let $theButton = undefined;
 
     //  destroy if exists
     function destroyiframeIfExists($button) {
-      if (theOtherPlayer) {
-        theOtherPlayer.destroy();
-        theOtherPlayer = undefined;
-      }
       if ($thePlayer) {
         $thePlayer.forEach((p, k) => {
           p.remove();
@@ -111,7 +105,6 @@ $(document).ready(function () {
           left: pos.left,
           width: ow + "px",
           height: oh + "px",
-          // "background-color": "#212529",
         },
         boh: { ow: ow, oh: oh },
         $parentCard: $parentCard,
@@ -123,14 +116,9 @@ $(document).ready(function () {
       e.stopPropagation();
 
       // destroy
-      /* theGlobalPlayer.stop(); */
       $theButton = destroyiframeIfExists($(e.currentTarget));
 
       if ($theButton) {
-        // create
-        /* if ($theButton.attr("class").indexOf("sound") != -1) {
-          theGlobalPlayer.start();
-        } */
         const styleAndParentCard = getStyleAndParentCard($theButton);
         const $iframe = $(
           template({
@@ -140,21 +128,6 @@ $(document).ready(function () {
 
         $thePlayer = [$iframe];
         $thePlayer.forEach((p) => styleAndParentCard.$parentCard.append(p));
-        if ($theButton.attr("class").indexOf("vid") != -1) {
-          /* theOtherPlayer = new Plyr("#yt-widget", {
-            ratio: "4:3",
-            settings: ["captions"],
-          }); 
-          theOtherPlayer.on("ready", (event) => {
-            console.log("Plyr play");
-            theOtherPlayer.play();
-          });
-          theOtherPlayer.on("ended", (event) => {
-            console.log("Plyr ended");
-          });
-          $(theOtherPlayer.elements.container).css(styleAndParentCard.style);
-          */
-        }
       }
     }
 
@@ -266,10 +239,6 @@ $(document).ready(function () {
           .attr("href", data.brandlink)
           .attr("target", "_" + data.id);
       }
-      const styleTemplate = Handlebars.compile(
-        document.getElementById("style-template").innerHTML
-      );
-      // $("head").append(styleTemplate($("title").text()));
 
       if (data.copyright) {
         $("#copyright").html(data.copyright);
@@ -284,6 +253,7 @@ $(document).ready(function () {
       if (data.brandLogoSVG) {
         const vinyl_brand_svg = document.getElementById('vinyl_brand_svg')
         playList = new PlayList(vinyl_brand_svg, data.brandLogoSVG)
+        console.log(playList)
       }
 
       if (data.background) {
@@ -339,7 +309,6 @@ $(document).ready(function () {
           fadeIn($row.children(".col"), 200);
         });
       });
-
     });
   });
 });
