@@ -83,6 +83,7 @@ $(document).ready(function () {
       }
 
       // be on the safe side
+      playList.onStop()
       $(".widgette").remove();
 
       if ($theButton) {
@@ -136,6 +137,7 @@ $(document).ready(function () {
         $thePlayer = [$iframe];
         $thePlayer.forEach((p) => styleAndParentCard.$parentCard.append(p));
 
+        ////////////////
         const player = document.querySelector('media-player');
         if (player) {
           player.addEventListener('play', (e) => {
@@ -163,6 +165,25 @@ $(document).ready(function () {
             console.log("destroy")
             playList.onStop()
           })
+        }
+
+        ///////////////
+        const widgetIframe = document.getElementById('sc-widget');
+        if (widgetIframe) {
+          const widget = SC.Widget(widgetIframe);
+          if (widget) {
+            widget.bind(SC.Widget.Events.READY, function () {
+              widget.bind(SC.Widget.Events.PLAY, function () {
+                playList.onStart()
+              });
+              widget.bind(SC.Widget.Events.PAUSE, function () {
+                playList.onStop()
+              });
+              widget.bind(SC.Widget.Events.FINISH, function () {
+                playList.onStop()
+              });
+            });
+          }
         }
       }
     }
