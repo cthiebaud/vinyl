@@ -69,8 +69,15 @@ $(document).ready(function () {
     //  destroy if exists
     function destroyiframeIfExists($button) {
       if ($thePlayer) {
-        $thePlayer.forEach((p, k) => {
-          p.remove();
+        $thePlayer.forEach(($p, k) => {
+          $p.each((index, elem) => {
+            console.log("removing", k, index, elem)
+            if (typeof elem.destroy === "function") {
+              elem.destroy()
+            }
+          })
+          console.log("removing", k, $p)
+          $p.remove();
         });
         $thePlayer = undefined;
       }
@@ -128,6 +135,33 @@ $(document).ready(function () {
 
         $thePlayer = [$iframe];
         $thePlayer.forEach((p) => styleAndParentCard.$parentCard.append(p));
+
+        const player = document.querySelector('media-player');
+        player.addEventListener('play', (e) => {
+          e.stopPropagation();
+          console.log("play")
+          playList.onStart()
+        })
+        player.addEventListener('pause', (e) => {
+          e.stopPropagation();
+          console.log("pause")
+          playList.onStop()
+        })
+        player.addEventListener('stop', (e) => {
+          e.stopPropagation();
+          console.log("stop")
+          playList.onStop()
+        })
+        player.addEventListener('ended', (e) => {
+          e.stopPropagation();
+          console.log("ended")
+          playList.onStop()
+        })
+        player.addEventListener('destroy', (e) => {
+          e.stopPropagation();
+          console.log("destroy")
+          playList.onStop()
+        })
       }
     }
 
