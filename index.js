@@ -137,31 +137,33 @@ $(document).ready(function () {
         $thePlayer.forEach((p) => styleAndParentCard.$parentCard.append(p));
 
         const player = document.querySelector('media-player');
-        player.addEventListener('play', (e) => {
-          e.stopPropagation();
-          console.log("play")
-          playList.onStart()
-        })
-        player.addEventListener('pause', (e) => {
-          e.stopPropagation();
-          console.log("pause")
-          playList.onStop()
-        })
-        player.addEventListener('stop', (e) => {
-          e.stopPropagation();
-          console.log("stop")
-          playList.onStop()
-        })
-        player.addEventListener('ended', (e) => {
-          e.stopPropagation();
-          console.log("ended")
-          playList.onStop()
-        })
-        player.addEventListener('destroy', (e) => {
-          e.stopPropagation();
-          console.log("destroy")
-          playList.onStop()
-        })
+        if (player) {
+          player.addEventListener('play', (e) => {
+            e.stopPropagation();
+            console.log("play")
+            playList.onStart()
+          })
+          player.addEventListener('pause', (e) => {
+            e.stopPropagation();
+            console.log("pause")
+            playList.onStop()
+          })
+          player.addEventListener('stop', (e) => {
+            e.stopPropagation();
+            console.log("stop")
+            playList.onStop()
+          })
+          player.addEventListener('ended', (e) => {
+            e.stopPropagation();
+            console.log("ended")
+            playList.onStop()
+          })
+          player.addEventListener('destroy', (e) => {
+            e.stopPropagation();
+            console.log("destroy")
+            playList.onStop()
+          })
+        }
       }
     }
 
