@@ -16,17 +16,21 @@
     -->
 
       <a id="vinyl_brand" class="navbar-brand d-flex align-items-center" title="Title">
-        <img id="vinyl_brand_svg"src="/vinyl/svgos/vinyl_icon.svg" title="Logo">
+        <img id="vinyl_brand_svg" src="/vinyl/svgos/vinyl_icon.svg" title="Logo">
       </a>
-      
+
       <div id="sort_button" class="input-group input-group-sm" style="width: unset;">
         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</button>
         <ul class="dropdown-menu">
           <li><a id="chronological" class="dropdown-item" href="#">chronological</a></li>
           <li><a id="alphabetical" class="dropdown-item" href="#">alphabetical</a></li>
           <li><a id="duration" class="dropdown-item" href="#">duration</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><class= id="random"class="dropdown-item" href="#">random</a></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <class= id="random" class="dropdown-item" href="#">random</a>
+          </li>
         </ul>
         <input type="checkbox" class="btn-check btn-outline-secondary" id="btn-check" autocomplete="off">
         <label id="sort-direction" class="btn btn-outline-secondary" for="btn-check" style="font-size: 24px;"></label>
@@ -157,8 +161,13 @@
                 <img style="height:14px; width: auto; vertical-align:middle;" src="/vinyl/svgos/external-svgrepo-com.svg">
               </a>
               </span>
+            {{else if val.listen.0.url}}<span>
+              <a type="button" class="btn btn-sm btn-outline-secondary" href="{{val.listen.0.url}}" target="_{{key}}">
+                <img style="height:14px; width: auto; vertical-align:middle;" src="/vinyl/svgos/external-svgrepo-com.svg">
+              </a>
+              </span>
             {{/if}}
-          </div>
+            </div>
         </div>
       </div>
     </div>
