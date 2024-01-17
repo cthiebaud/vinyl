@@ -1,7 +1,8 @@
 import handlebars from 'https://cdn.jsdelivr.net/npm/handlebars@4.7.8/+esm'
 
-import { PlayList } from "./PlayList.js";
+import { this.playList } from "./this.playList.js";
 import ElementAnimator from './ElementAnimator.js';
+import { Utils } from './utils.js';
 
 export default class VinylPlayer {
   constructor() {
@@ -24,7 +25,7 @@ export default class VinylPlayer {
   }
 
   destroyiframeIfExists(button) {
-    if (thePlayer) {
+    if (typeof thePlayer !== 'undefined') {
       thePlayer.forEach(player => {
         Array.from(player.entries()).forEach(([index, elem]) => {
           console.log("removing", index, elem);
@@ -56,6 +57,127 @@ export default class VinylPlayer {
     return button;
   }
 
+  getStyleAndParentCard(button) {
+    const parentCard = button.closest("div.card");
+    const img = parentCard.querySelector("img");
+    const pos = img ? img.getBoundingClientRect() : { top: 0, left: 0 };
+    const oh = img ? img.offsetHeight : 0;
+    const ow = img ? img.offsetWidth : 0;
+
+    return {
+      style: {
+        position: "absolute",
+        top: pos.top + "px",
+        left: pos.left + "px",
+        width: ow + "px",
+        height: oh + "px",
+      },
+      boh: { ow: ow, oh: oh },
+      parentCard: parentCard,
+    };
+  }
+
+  showiframe(e, template) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // destroy
+    const theButton = this.destroyiframeIfExists(e.currentTarget);
+
+    if (theButton) {
+      const styleAndParentCard = this.getStyleAndParentCard(theButton);
+      const temp = document.createElement('div');
+      temp.innerHTML = template({
+        id: theButton.dataset.id,
+      });
+      const iframe = temp.firstElementChild
+      iframe.style.cssText = styleAndParentCard.style;
+      this.thePlayer = [iframe];
+
+      this.thePlayer.forEach((p) => styleAndParentCard.parentCard.appendChild(p));
+
+      ////////////////
+      const player = document.querySelector('media-player');
+      if (player) {
+        const playHandler = () => {
+          console.log("play");
+          this.playList.onStart();
+        };
+
+        const pauseHandler = () => {
+          console.log("pause");
+          this.playList.onStop();
+        };
+
+        const stopHandler = () => {
+          console.log("stop");
+          this.playList.onStop();
+        };
+
+        const endedHandler = () => {
+          console.log("ended");
+          this.playList.onStop();
+        };
+
+        const destroyHandler = () => {
+          console.log("destroy");
+          this.playList.onStop();
+        };
+
+        player.addEventListener('play', playHandler);
+        player.addEventListener('pause', pauseHandler);
+        player.addEventListener('stop', stopHandler);
+        player.addEventListener('ended', endedHandler);
+        player.addEventListener('destroy', destroyHandler);
+      }
+
+      ///////////////
+      const widgetIframe = document.getElementById('sc-widget');
+      if (widgetIframe) {
+        const widget = SC.Widget(widgetIframe);
+        if (widget) {
+          widget.bind(SC.Widget.Events.READY, function () {
+            widget.bind(SC.Widget.Events.PLAY, function () {
+              this.playList.onStart();
+            });
+            widget.bind(SC.Widget.Events.PAUSE, function () {
+              this.playList.onStop();
+            });
+            widget.bind(SC.Widget.Events.FINISH, function () {
+              this.playList.onStop();
+            });
+          });
+        }
+      }
+    }
+  }
+
+
+  addEventHandlers() {
+    const cardImages = document.querySelectorAll("div.card img.img-fluid");
+    cardImages.forEach((image) => {
+      image.addEventListener("click", (e) => {
+        const firstButton = e.currentTarget.closest("div.card").querySelector(".btn-group [type='button']:first-child");
+        if (firstButton) {
+          e.preventDefault();
+          e.stopPropagation();
+          firstButton.click();
+        } else if (e.currentTarget.dataset.url) {
+          e.preventDefault();
+          e.stopPropagation();
+          window.open(e.currentTarget.dataset.url);
+        }
+      });
+    });
+
+    const cardButtons = document.querySelectorAll("div.card [type='button']");
+    Object.keys(this.templates).forEach((key) => {
+      const buttonsWithKeyClass = document.querySelectorAll(`div.card [type='button'].${key}`);
+      buttonsWithKeyClass.forEach((button) => {
+        button.addEventListener("click", (e) => this.showiframe(e, this.templates[key]));
+      });
+    });
+  }
   sortCards(datums, order) {
     order = order || this.lastOrder;
     let cards = [...datums.order];
@@ -78,17 +200,19 @@ export default class VinylPlayer {
     };
 
     const compareChronological = (a, b) => {
-      /*
-      const dateA = dayjs(datums.songs[a].date);
-      const dateB = dayjs(datums.songs[b].date);
-      let diff = dateA.isBefore(dateB) ? 1 : -1;
-      return this.inverse ? -diff : diff;
-      */
-      return 0
+      const parseDate = (dateString) => {
+        const date = new Date(dateString);
+        return isNaN(date) ? 0 : date.getTime();
+      };
+
+      const dateA = parseDate(datums.songs[a].date);
+      const dateB = parseDate(datums.songs[b].date);
+
+      return this.inverse ? dateA - dateB : dateB - dateA;
     };
 
     if (order === "random") {
-      cards = shuffleArray(cards);
+      cards = Utils.shuffleArray(cards);
     } else if (order === "alphabetical") {
       cards = cards.sort(compareText);
     } else if (order === "duration") {
@@ -147,8 +271,7 @@ export default class VinylPlayer {
       parent.appendChild(cardElement.firstElementChild);
     });
 
-    // addEventHandlers();
-
+    this.addEventHandlers();
   }
 
   async fetchBody() {
@@ -211,7 +334,7 @@ export default class VinylPlayer {
       }
 
       if (data.brandLogoSVG) {
-        this.playList = new PlayList(vinylBrandSvg, data.brandLogoSVG, this.destroyiframeIfExists);
+        this.playList = new this.playList(vinylBrandSvg, data.brandLogoSVG, this.destroyiframeIfExists);
         console.log("NEW play list", this.playList);
       }
 
@@ -249,7 +372,7 @@ export default class VinylPlayer {
       });
 
       // Click handler for the checkbox 
-      document.getElementById('btn-check').addEventListener('click',  event => {
+      document.getElementById('btn-check').addEventListener('click', event => {
         var isChecked = event.target.checked;
         this.inverse = isChecked;
         console.log('inverse is :', isChecked);
