@@ -1,6 +1,6 @@
-import VinylPlayer from '/vinyl/src/js/VinylPlayer.js'
+import Vinyl from '/vinyl/src/js/Vinyl.js'
 
 document.addEventListener("DOMContentLoaded", function () {
-    const vinylPlayer = new VinylPlayer()
-    vinylPlayer.fetchBody()
+    const vinyl = new Vinyl()
+    vinyl.fetchBodyAndDataFile()
 })

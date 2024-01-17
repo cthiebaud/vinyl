@@ -287,19 +287,6 @@
             <a type="button" id="listen_{{id}}" title="{{title}}" class="sound btn btn-sm btn-outline-secondary font-monospace" data-id="{{id}}" data-text="listen">listen
             </a>
             {{/each}}
-            {{#if val.markdown}}
-            <a type="button" id="read_{{key}}" class="markdown btn btn-sm btn-outline-secondary font-monospace" data-id="{{key}}" data-text="read">read
-            </a>
-            {{/if}}
-            {{#if val.url}}
-            <a type="button" id="url{{key}}" class="url btn btn-sm btn-outline-secondary font-monospace" data-id="{{val.url}}" data-text="mise en abyme">mise en abyme</a>
-            {{/if}}
-            {{#if val.instagram}}
-            <a type="button" id="url{{key}}" class="instagram btn btn-sm btn-outline-secondary font-monospace" data-id="{{key}}" data-text="insta">insta</a>
-            {{/if}}
-            {{#if val.score}}
-            <a type="button" id="score_{{key}}" class="score btn btn-sm btn-outline-secondary font-monospace" data-id="{{isNotBoolean: val.score val.score key}}" data-text="score">score</a>
-            {{/if}}
           </div>
           <div class="text-muted font-monospace" style="text-align: right;font-size: smaller; text-align: center;">
             <span>{{{val.duration}}}</span>

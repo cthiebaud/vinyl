@@ -1,4 +1,4 @@
-class ElementAnimator {
+export class ElementAnimator {
   static isElementPartInViewport(el) {
     const rect = el.getBoundingClientRect();
     return !(
@@ -76,5 +76,3 @@ class ElementAnimator {
     });
   }
 }
-
-export default ElementAnimator;
