@@ -222,10 +222,13 @@ export default class Vinyl {
         })
       })
 
+      /////////////
+      // CONTROLLER
       console.log("READY TO CREATE CONTROLLER")
       this.controller = new Controller.clazz()
 
-      this.tokenCreateMediaPlayer = PubSub.subscribe(Controller.symbols._CREATE_MEDIA_PLAYER_, (msg, data) => {
+      // CREATE MEDIA PLAYER
+      const onCreateMediaPlayer = (msg, data) => {
         console.log(msg, data);
 
         function getStyleAndAncestorCard(button) {
@@ -257,9 +260,12 @@ export default class Vinyl {
         this.thePlayer = temp.firstElementChild
         this.thePlayer.style.cssText = Object.keys(styleAndancestorCard.style).map(property => `${property}: ${styleAndancestorCard.style[property]}`).join(';');
         styleAndancestorCard.ancestorCard.appendChild(this.thePlayer)
-      })
+      }
 
-      this.tokenDestroyMediaPlayer = PubSub.subscribe(Controller.symbols._DESTROY_MEDIA_PLAYER, (msg, data) => {
+      this.tokenCreateMediaPlayer = PubSub.subscribe(Controller.symbols._CREATE_MEDIA_PLAYER_, onCreateMediaPlayer)
+
+      // DESTROY MEDIA PLAYER
+      const onDestroyMediaPlayer = (msg, data) => {
         console.log(msg, data);
 
         if (typeof this.thePlayer !== 'undefined') {
@@ -274,8 +280,11 @@ export default class Vinyl {
         // Be on the safe side
         document.querySelectorAll('.widgette').forEach(widget => widget.remove())
         document.querySelectorAll('.btn-group [type="button"]').forEach(button => button.innerHTML = button.dataset.text)
-      })
+      }
 
+      this.tokenDestroyMediaPlayer = PubSub.subscribe(Controller.symbols._DESTROY_MEDIA_PLAYER, onDestroyMediaPlayer)
+
+      // click on card image
       const cardImages = document.querySelectorAll("div.card img.img-fluid")
       cardImages.forEach((image) => {
         image.addEventListener("click", (e) => {
@@ -283,17 +292,20 @@ export default class Vinyl {
           if (firstButton) {
             e.preventDefault()
             e.stopPropagation()
+            // emulate click on first button
             firstButton.click()
           }
         })
       })
 
+      // click on card button
       Object.keys(this.templates).forEach((key) => {
         const buttonsWithKeyClass = document.querySelectorAll(`div.card [type='button'].${key}`)
         buttonsWithKeyClass.forEach((button) => {
           button.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
+            // post to controller
             PubSub.publish(Controller.symbols._CLICKED_, {
               buttonId: button.id,
               mediaId: button.dataset.id,
@@ -302,7 +314,6 @@ export default class Vinyl {
           })
         })
       })
-
 
     } catch (error) {
       console.error("Error fetching body:", error)
