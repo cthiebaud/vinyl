@@ -9,7 +9,7 @@ import { Utils } from './utils.js'
 export default class Vinyl {
   constructor() {
     this.lastOrder = 'chronological'
-    this.inverse = false
+    this.inverse = true
     this.controller = undefined
     this.templates = {
       song: undefined,
@@ -32,9 +32,9 @@ export default class Vinyl {
     const compareDuration = (a, b) => {
       const dA = datums.songs[a].duration.split(":")
       const dB = datums.songs[b].duration.split(":")
-      let diff = dB[0] - dA[0]
+      let diff = dA[0] - dB[0]
       if (diff === 0) {
-        diff = dB[1] - dA[1]
+        diff = dA[1] - dB[1]
       }
       return this.inverse ? -diff : diff
     }
@@ -48,7 +48,7 @@ export default class Vinyl {
       const dateA = parseDate(datums.songs[a].date)
       const dateB = parseDate(datums.songs[b].date)
 
-      return this.inverse ? dateA - dateB : dateB - dateA
+      return this.inverse ? dateB - dateA : dateA - dateB
     }
 
     if (order === "random") {
@@ -259,7 +259,7 @@ export default class Vinyl {
       document.getElementById('btn-check').addEventListener('click', event => {
         var isChecked = event.target.checked
         this.inverse = isChecked
-        // console.log('inverse is :', isChecked)
+        // console.log('inverse is :', isChecked, event.target)
 
         ElementAnimator.fadeOut(songsElement.children, 100, () => {
           songsElement.innerHTML = ""
