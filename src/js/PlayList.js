@@ -64,7 +64,15 @@ export class PlayList {
 
             if (!this.active) {
                 this.active = true
-                PubSub.publish(Controller.symbols._START_, this.list[this.curr.index])
+                const dat = this.list[this.curr.index]
+                const button = document.getElementById(dat.buttonId)
+                const ancestorCard = button.closest(".card")
+                ancestorCard.scrollIntoView({
+                    behavior: 'smooth', // You can use 'auto' for instant scrolling
+                    block: 'start',     // You can use 'end' or 'center' as well
+                  });
+
+                PubSub.publish(Controller.symbols._START_, dat)
             } else {
                 this.active = false
             }
