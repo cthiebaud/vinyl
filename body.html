@@ -280,11 +280,11 @@
         <div id="card-legend-{{key}}" class="d-flex card-legend flex-wrap justify-content-around align-items-end" style="vertical-align: middle; max-width: 100%; overflow:hidden;">
           <div id="card-buttons-{{key}}" class="btn-group" >
             {{#each val.watch}}
-            <a type="button" id="watch_{{id}}" title="{{title}}" class="vid btn btn-sm btn-outline-secondary font-monospace" data-id="{{id}}" data-text="watch">watch
+            <a type="button" id="watch_{{id}}" title="{{title}}" class="vid btn btn-sm btn-outline-secondary font-monospace" data-id="{{id}}" data-media="vid" data-text="watch">watch
             </a>
             {{/each}}
             {{#each val.listen}}
-            <a type="button" id="listen_{{id}}" title="{{title}}" class="sound btn btn-sm btn-outline-secondary font-monospace" data-id="{{id}}" data-text="listen">listen
+            <a type="button" id="listen_{{id}}" title="{{title}}" class="sound btn btn-sm btn-outline-secondary font-monospace" data-id="{{id}}" data-media="sound">listen
             </a>
             {{/each}}
           </div>

@@ -22,6 +22,11 @@ body {
   font-size: smaller;
 }
 
+#cursor {
+  width: 25px; 
+  text-align: center;
+}
+
 header .list-unstyled a {
   text-decoration: none;
 }
@@ -29,7 +34,7 @@ header .list-unstyled a {
 #vinyl_brand_svg {
   width: auto;
   height: 32px;
-  margin-left: 0.5rem;
+  /* margin-left: 0.5rem; */
 }
 
 #vinyl_share {

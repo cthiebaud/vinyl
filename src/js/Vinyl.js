@@ -84,6 +84,39 @@ export default class Vinyl {
     return cards
   }
 
+  addEventHandlers() {
+    // click on card image
+    const cardImages = document.querySelectorAll("div.card img.img-fluid")
+    cardImages.forEach((image) => {
+      image.addEventListener("click", (e) => {
+        const firstButton = e.currentTarget.closest("div.card").querySelector(".btn-group [type='button']:first-child")
+        if (firstButton) {
+          e.preventDefault()
+          e.stopPropagation()
+          // emulate click on first button
+          firstButton.click()
+        }
+      })
+    })
+
+    // click on card button
+    Object.keys(this.templates).forEach((key) => {
+      const buttonsWithKeyClass = document.querySelectorAll(`div.card [type='button'].${key}`)
+      buttonsWithKeyClass.forEach((button) => {
+        button.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          // post to controller
+          PubSub.publish(Controller.symbols._CLICKED_, {
+            buttonId: button.id,
+            mediaId: button.dataset.id,
+            templateId: key
+          })
+        })
+      })
+    })
+  }
+
   insertCards(datums, parent, order) {
     const cards = this.sortCards(datums, order)
     cards.forEach((key) => {
@@ -111,7 +144,11 @@ export default class Vinyl {
       parent.appendChild(cardElement.firstElementChild)
     })
 
-    // this.addEventHandlers()
+    this.addEventHandlers()
+
+    if (this.playList) {
+      this.playList.refresh()
+    }
   }
 
   async fetchBodyAndDataFile() {
@@ -172,10 +209,6 @@ export default class Vinyl {
         navbarHeader.insertAdjacentHTML('afterbegin', header)
       }
 
-      if (data.brandLogoSVG) {
-        this.playList = new PlayList(vinylBrandSvg, data.brandLogoSVG)
-      }
-
       if (data.background) {
         htmlElement.style.background = "url(" + data.background + ") no-repeat center center"
         htmlElement.style.backgroundSize = "contain"
@@ -185,11 +218,19 @@ export default class Vinyl {
 
       ElementAnimator.fadeIn(songsElement.children, 111)
 
+      if (data.brandLogoSVG) {
+        vinylBrandSvg.insertAdjacentHTML('beforebegin', '<button id="resetCursor" class="btn btn-sm">&lt;&lt;</button>')
+        vinylBrandSvg.insertAdjacentHTML('beforebegin', '<button id="prevCursor" class="btn btn-sm">&lt;</button>')
+        vinylBrandSvg.insertAdjacentHTML('afterend', '<button id="nextCursor" class="btn btn-sm">&gt;</button>')
+        vinylBrandSvg.insertAdjacentHTML('afterend', '<div id="cursor">&nbsp;</div>')
+        this.playList = new PlayList(vinylBrandSvg, data.brandLogoSVG)
+      }
+
       // Click handler for dropdown items
       document.querySelectorAll('#sort_button .dropdown-item').forEach(item => {
         item.addEventListener('click', event => {
           var selectedItemText = event.target.textContent
-          console.log('Selected item:', selectedItemText)
+          // console.log('Selected item:', selectedItemText)
 
           sortButton.querySelector('.dropdown-toggle').textContent = selectedItemText
 
@@ -213,7 +254,7 @@ export default class Vinyl {
       document.getElementById('btn-check').addEventListener('click', event => {
         var isChecked = event.target.checked
         this.inverse = isChecked
-        console.log('inverse is :', isChecked)
+        // console.log('inverse is :', isChecked)
 
         ElementAnimator.fadeOut(songsElement.children, 100, () => {
           songsElement.innerHTML = ""
@@ -229,7 +270,7 @@ export default class Vinyl {
 
       // CREATE MEDIA PLAYER
       const onCreateMediaPlayer = (msg, data) => {
-        console.log(msg, data);
+        // console.log(msg, data);
 
         function getStyleAndAncestorCard(button) {
           const ancestorCard = button.closest(".card")
@@ -260,19 +301,65 @@ export default class Vinyl {
         this.thePlayer = temp.firstElementChild
         this.thePlayer.style.cssText = Object.keys(styleAndancestorCard.style).map(property => `${property}: ${styleAndancestorCard.style[property]}`).join(';');
         styleAndancestorCard.ancestorCard.appendChild(this.thePlayer)
+
+        ////////////////
+        const player = document.querySelector('media-player')
+        if (player) {
+          const playHandler = () => {
+            console.log("vidstack play")
+          }
+          const pauseHandler = () => {
+            console.log("vidstack pause")
+          }
+          const stopHandler = () => {
+            console.log("vidstack stop")
+          }
+          const endedHandler = () => {
+            PubSub.publish(Controller.symbols._NEXT_, null)
+            console.log("vidstack ended")
+          }
+          const destroyHandler = () => {
+            console.log("vidstack destroy")
+          }
+          player.addEventListener('play', playHandler)
+          player.addEventListener('pause', pauseHandler)
+          player.addEventListener('stop', stopHandler)
+          player.addEventListener('ended', endedHandler)
+          player.addEventListener('destroy', destroyHandler)
+        }
+
+        ///////////////
+        const widgetIframe = document.getElementById('sc-widget')
+        if (widgetIframe) {
+          const widget = SC.Widget(widgetIframe)
+          if (widget) {
+            widget.bind(SC.Widget.Events.READY, function () {
+              widget.bind(SC.Widget.Events.PLAY, function () {
+                console.log("soundcloud play")
+              })
+              widget.bind(SC.Widget.Events.PAUSE, function () {
+                console.log("soundcloud pause")
+              })
+              widget.bind(SC.Widget.Events.FINISH, function () {
+                PubSub.publish(Controller.symbols._NEXT_, null)
+                console.log("soundcloud finish")
+              })
+            })
+          }
+        }
       }
 
       this.tokenCreateMediaPlayer = PubSub.subscribe(Controller.symbols._CREATE_MEDIA_PLAYER_, onCreateMediaPlayer)
 
       // DESTROY MEDIA PLAYER
       const onDestroyMediaPlayer = (msg, data) => {
-        console.log(msg, data);
+        // console.log(msg, data);
 
         if (typeof this.thePlayer !== 'undefined') {
           if (typeof this.thePlayer.destroy === "function") {
-            this.thePlayer.destroy()
+            // this.thePlayer.destroy()
           }
-          console.log("removing", this.thePlayer)
+          // console.log("removing", this.thePlayer)
           this.thePlayer.remove()
           this.thePlayer = undefined
         }
@@ -283,37 +370,6 @@ export default class Vinyl {
       }
 
       this.tokenDestroyMediaPlayer = PubSub.subscribe(Controller.symbols._DESTROY_MEDIA_PLAYER, onDestroyMediaPlayer)
-
-      // click on card image
-      const cardImages = document.querySelectorAll("div.card img.img-fluid")
-      cardImages.forEach((image) => {
-        image.addEventListener("click", (e) => {
-          const firstButton = e.currentTarget.closest("div.card").querySelector(".btn-group [type='button']:first-child")
-          if (firstButton) {
-            e.preventDefault()
-            e.stopPropagation()
-            // emulate click on first button
-            firstButton.click()
-          }
-        })
-      })
-
-      // click on card button
-      Object.keys(this.templates).forEach((key) => {
-        const buttonsWithKeyClass = document.querySelectorAll(`div.card [type='button'].${key}`)
-        buttonsWithKeyClass.forEach((button) => {
-          button.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            // post to controller
-            PubSub.publish(Controller.symbols._CLICKED_, {
-              buttonId: button.id,
-              mediaId: button.dataset.id,
-              templateId: key
-            })
-          })
-        })
-      })
 
     } catch (error) {
       console.error("Error fetching body:", error)

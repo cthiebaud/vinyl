@@ -8,6 +8,7 @@ export const Controller = (function () {
     const _CLICKED = Symbol('_CLICKED_')
     const _START = Symbol('_START_')
     const _STOP = Symbol('_STOP_')
+    const _NEXT = Symbol('_NEXT_')
     const _CREATE_MEDIA_PLAYER = Symbol('_CREATE_MEDIA_PLAYER_')
     const _DESTROY_MEDIA_PLAYER = Symbol('_DESTROY_MEDIA_PLAYER')
 
@@ -52,6 +53,7 @@ export const Controller = (function () {
             _CLICKED_: _CLICKED,
             _START_: _START,
             _STOP_: _STOP,
+            _NEXT_: _NEXT,
             _CREATE_MEDIA_PLAYER_: _CREATE_MEDIA_PLAYER,
             _DESTROY_MEDIA_PLAYER_: _DESTROY_MEDIA_PLAYER,
         })
