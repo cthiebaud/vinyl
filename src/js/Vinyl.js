@@ -181,6 +181,7 @@ export default class Vinyl {
       })();
 
       // feed body with data
+      const github = document.getElementById('github')
       const navbarHeader = document.getElementById('navbarHeader')
       const vinylBrand = document.getElementById('vinyl_brand')
       const vinylBrandSvg = document.getElementById('vinyl_brand_svg')
@@ -188,6 +189,10 @@ export default class Vinyl {
       const htmlElement = document.querySelector('html')
       const sortButton = document.getElementById('sort_button')
       const songsElement = document.getElementById('songs')
+
+      if (data.github) {
+        github.href = data.github
+      }
 
       if (data.brandlink) {
         vinylBrand.href = data.brandlink

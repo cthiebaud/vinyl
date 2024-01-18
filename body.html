@@ -26,7 +26,9 @@
           <li><a id="chronological" class="dropdown-item" href="#">chronological</a></li>
           <li><a id="alphabetical" class="dropdown-item" href="#">alphabetical</a></li>
           <li><a id="duration" class="dropdown-item" href="#">duration</a></li>
-          <li><hr class="dropdown-divider"></li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
           <li><a id="random" class="dropdown-item" href="#">random</a></li>
         </ul>
         <input type="checkbox" class="btn-check btn-outline-secondary" id="btn-check" autocomplete="off">
@@ -49,94 +51,101 @@
 </main>
 
 <footer class="text-muted py-3">
-  <div class="container">
-    <p id="copyright" class="float-end mb-1 font-monospace"></p>
+  <div class="container d-flex flex-row-reverse align-items-center">
+    <a id="github" type="button" class="btn btn-sm btn-outline-light" href="#" target="_github" aria-label="github">
+      <svg width="16" height="auto" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" style="vertical-align: text-bottom;">
+        <path fill-rule="evenodd" stroke="none" clip-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8C0 11.54 2.29 14.53 5.47 15.59C5.87 15.66 6.02 15.42 6.02 15.21C6.02 15.02 6.01 14.39 6.01 13.72C4 14.09 3.48 13.23 3.32 12.78C3.23 12.55 2.84 11.84 2.5 11.65C2.22 11.5 1.82 11.13 2.49 11.12C3.12 11.11 3.57 11.7 3.72 11.94C4.44 13.15 5.59 12.81 6.05 12.6C6.12 12.08 6.33 11.73 6.56 11.53C4.78 11.33 2.92 10.64 2.92 7.58C2.92 6.71 3.23 5.99 3.74 5.43C3.66 5.23 3.38 4.41 3.82 3.31C3.82 3.31 4.49 3.1 6.02 4.13C6.66 3.95 7.34 3.86 8.02 3.86C8.7 3.86 9.38 3.95 10.02 4.13C11.55 3.09 12.22 3.31 12.22 3.31C12.66 4.41 12.38 5.23 12.3 5.43C12.81 5.99 13.12 6.7 13.12 7.58C13.12 10.65 11.25 11.33 9.47 11.53C9.76 11.78 10.01 12.26 10.01 13.01C10.01 14.08 10 14.94 10 15.21C10 15.42 10.15 15.67 10.55 15.59C13.71 14.53 16 11.53 16 8C16 3.58 12.42 0 8 0Z"
+          transform="scale(64)" />
+      </svg>
+    </a>
+    <p id="copyright" class="m-0 font-monospace"></p>
   </div>
 </footer>
 
 <script id="vid-template" type="text/x-handlebars-template">
   <!-- div id="yt-widget" class="widgette" data-plyr-provider="youtube" data-plyr-embed-id="{{id}}"></!-->
-  <media-player class="widgette" autoplay src="youtube/{{id}}" playsinline="true">
-    <media-provider></media-provider>
-    <media-video-layout></media-video-layout>
-    <!-- Controls -->
-    <media-controls>
-      <div class="media-controls-spacer"></div>
-      <media-controls-group>
-        <!-- Time Slider -->
-        <media-time-slider class="media-slider">
-          <media-slider-chapters>
-            <template>
-              <div class="media-slider-chapter">
-                <div class="media-slider-track"></div>
-                <div class="media-slider-track-fill media-slider-track"></div>
-                <div class="media-slider-progress media-slider-track"></div>
-              </div>
-            </template>
-          </media-slider-chapters>
-          <div class="media-slider-thumb"></div>
-          <media-slider-preview>
-            <media-slider-thumbnail src="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt"></media-slider-thumbnail>
-            <div data-part="chapter-title"></div>
-            <media-slider-value></media-slider-value>
-          </media-slider-preview>
-        </media-time-slider>
-      </media-controls-group>
+<media-player class="widgette" autoplay src="youtube/{{id}}" playsinline="true">
+  <media-provider></media-provider>
+  <media-video-layout></media-video-layout>
+  <!-- Controls -->
+  <media-controls>
+    <div class="media-controls-spacer"></div>
+    <media-controls-group>
+      <!-- Time Slider -->
+      <media-time-slider class="media-slider">
+        <media-slider-chapters>
+          <template>
+            <div class="media-slider-chapter">
+              <div class="media-slider-track"></div>
+              <div class="media-slider-track-fill media-slider-track"></div>
+              <div class="media-slider-progress media-slider-track"></div>
+            </div>
+          </template>
+        </media-slider-chapters>
+        <div class="media-slider-thumb"></div>
+        <media-slider-preview>
+          <media-slider-thumbnail src="https://image.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU/storyboard.vtt"></media-slider-thumbnail>
+          <div data-part="chapter-title"></div>
+          <media-slider-value></media-slider-value>
+        </media-slider-preview>
+      </media-time-slider>
+    </media-controls-group>
 
-      <media-controls-group>
-        <!-- Play Button -->
-        <media-tooltip>
-          <media-tooltip-trigger>
-            <media-play-button class="media-button">
-              <media-icon class="media-play-icon" type="play"></media-icon>
-              <media-icon class="media-pause-icon" type="pause"></media-icon>
-            </media-play-button>
-          </media-tooltip-trigger>
-          <media-tooltip-content class="media-tooltip" placement="top">
-            <span class="media-play-tooltip-text">Play</span>
-            <span class="media-pause-tooltip-text">Pause</span>
-          </media-tooltip-content>
-        </media-tooltip>
+    <media-controls-group>
+      <!-- Play Button -->
+      <media-tooltip>
+        <media-tooltip-trigger>
+          <media-play-button class="media-button">
+            <media-icon class="media-play-icon" type="play"></media-icon>
+            <media-icon class="media-pause-icon" type="pause"></media-icon>
+          </media-play-button>
+        </media-tooltip-trigger>
+        <media-tooltip-content class="media-tooltip" placement="top">
+          <span class="media-play-tooltip-text">Play</span>
+          <span class="media-pause-tooltip-text">Pause</span>
+        </media-tooltip-content>
+      </media-tooltip>
 
-        <!-- Mute Button -->
-        <media-tooltip>
-          <media-tooltip-trigger>
-            <media-mute-button class="media-button">
-              <media-icon class="media-mute-icon" type="mute"></media-icon>
-              <media-icon class="media-volume-low-icon" type="volume-low"></media-icon>
-              <media-icon class="media-volume-high-icon" type="volume-high"></media-icon>
-            </media-mute-button>
-          </media-tooltip-trigger>
-          <media-tooltip-content class="media-tooltip" placement="top">
-            <span class="media-mute-tooltip-text">Unmute</span>
-            <span class="media-unmute-tooltip-text">Mute</span>
-          </media-tooltip-content>
-        </media-tooltip>
+      <!-- Mute Button -->
+      <media-tooltip>
+        <media-tooltip-trigger>
+          <media-mute-button class="media-button">
+            <media-icon class="media-mute-icon" type="mute"></media-icon>
+            <media-icon class="media-volume-low-icon" type="volume-low"></media-icon>
+            <media-icon class="media-volume-high-icon" type="volume-high"></media-icon>
+          </media-mute-button>
+        </media-tooltip-trigger>
+        <media-tooltip-content class="media-tooltip" placement="top">
+          <span class="media-mute-tooltip-text">Unmute</span>
+          <span class="media-unmute-tooltip-text">Mute</span>
+        </media-tooltip-content>
+      </media-tooltip>
 
-        <!-- Volume Slider -->
-        <media-volume-slider class="media-slider">
-          <div class="media-slider-track"></div>
-          <div class="media-slider-track-fill media-slider-track"></div>
-          <div class="media-slider-thumb"></div>
-          <media-slider-preview no-clamp>
-            <media-slider-value></media-slider-value>
-          </media-slider-preview>
-        </media-volume-slider>
+      <!-- Volume Slider -->
+      <media-volume-slider class="media-slider">
+        <div class="media-slider-track"></div>
+        <div class="media-slider-track-fill media-slider-track"></div>
+        <div class="media-slider-thumb"></div>
+        <media-slider-preview no-clamp>
+          <media-slider-value></media-slider-value>
+        </media-slider-preview>
+      </media-volume-slider>
 
-        <!-- Time Group -->
-        <div class="media-time-group">
-          <media-time type="current"></media-time>
-          <div class="media-time-divider">/</div>
-          <media-time type="duration"></media-time>
-        </div>
+      <!-- Time Group -->
+      <div class="media-time-group">
+        <media-time type="current"></media-time>
+        <div class="media-time-divider">/</div>
+        <media-time type="duration"></media-time>
+      </div>
 
-        <!--
+      <!--
           <media-chapter-title></media-chapter-title>
         -->
 
-        <div class="media-controls-spacer"></div>
+      <div class="media-controls-spacer"></div>
 
-        <!-- Caption Button 
+      <!-- Caption Button 
           <media-tooltip>
             <media-tooltip-trigger>
               <media-caption-button class="media-button">
@@ -151,7 +160,7 @@
           </media-tooltip>
         -->
 
-        <!-- Settings Menu 
+      <!-- Settings Menu 
           <media-menu>
             < ! - - Settings Menu Button - - >
             <media-tooltip>
@@ -192,7 +201,7 @@
           </media-menu>
         -->
 
-        <!-- PIP Button 
+      <!-- PIP Button 
           <media-tooltip>
             <media-tooltip-trigger>
               <media-pip-button class="media-button">
@@ -207,22 +216,22 @@
           </media-tooltip>
         -->
 
-        <!-- Fullscreen Button -->
-        <media-tooltip>
-          <media-tooltip-trigger>
-            <media-fullscreen-button class="media-button">
-              <media-icon class="media-fs-enter-icon" type="fullscreen"></media-icon>
-              <media-icon class="media-fs-exit-icon" type="fullscreen-exit"></media-icon>
-            </media-fullscreen-button>
-          </media-tooltip-trigger>
-          <media-tooltip-content class="media-tooltip" placement="top end">
-            <span class="media-fs-enter-tooltip-text">Enter Fullscreen</span>
-            <span class="media-fs-exit-tooltip-text">Exit Fullscreen</span>
-          </media-tooltip-content>
-        </media-tooltip>
-      </media-controls-group>
-    </media-controls>
-  </media-player>
+      <!-- Fullscreen Button -->
+      <media-tooltip>
+        <media-tooltip-trigger>
+          <media-fullscreen-button class="media-button">
+            <media-icon class="media-fs-enter-icon" type="fullscreen"></media-icon>
+            <media-icon class="media-fs-exit-icon" type="fullscreen-exit"></media-icon>
+          </media-fullscreen-button>
+        </media-tooltip-trigger>
+        <media-tooltip-content class="media-tooltip" placement="top end">
+          <span class="media-fs-enter-tooltip-text">Enter Fullscreen</span>
+          <span class="media-fs-exit-tooltip-text">Exit Fullscreen</span>
+        </media-tooltip-content>
+      </media-tooltip>
+    </media-controls-group>
+  </media-controls>
+</media-player>
 </script>
 
 <script id="sound-template" type="text/x-handlebars-template">
