@@ -108,7 +108,7 @@ input[type="checkbox"].btn-check:checked + #sort-direction.btn {
   background-color: unset !important;
 }
 input[type="checkbox"].btn-check:disabled + #sort-direction.btn {
-  filter: opacity(.5);
+  filter: opacity(0.5);
 }
 input[type="checkbox"].btn-check + #sort-direction.btn:before {
   margin-right: unset;
@@ -124,4 +124,17 @@ input[type="checkbox"].btn-check + #sort-direction.btn:before {
 }
 input[type="checkbox"].btn-check:checked + #sort-direction.btn:before {
   background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xml%3Aspace%3D%22preserve%22%20viewBox%3D%220%200%20301.219%20301.219%22%3E%3Cpath%20d%3D%22M159.365%2023.736v-10c0-5.523-4.477-10-10-10H10c-5.523%200-10%204.477-10%2010v10c0%205.523%204.477%2010%2010%2010h139.365c5.523%200%2010-4.477%2010-10M130.586%2066.736H10c-5.523%200-10%204.477-10%2010v10c0%205.523%204.477%2010%2010%2010h120.586c5.523%200%2010-4.477%2010-10v-10c0-5.523-4.477-10-10-10M111.805%20129.736H10c-5.523%200-10%204.477-10%2010v10c0%205.523%204.477%2010%2010%2010h101.805c5.523%200%2010-4.477%2010-10v-10c0-5.523-4.477-10-10-10M93.025%20199.736H10c-5.523%200-10%204.477-10%2010v10c0%205.523%204.477%2010%2010%2010h83.025c5.522%200%2010-4.477%2010-10v-10c0-5.523-4.477-10-10-10M74.244%20262.736H10c-5.523%200-10%204.477-10%2010v10c0%205.523%204.477%2010%2010%2010h64.244c5.522%200%2010-4.477%2010-10v-10c0-5.523-4.477-10-10-10M298.29%20216.877l-7.071-7.071a10%2010%200%200%200-14.143%200l-34.393%2034.393V18.736c0-5.523-4.477-10-10-10h-10c-5.523%200-10%204.477-10%2010v225.462l-34.393-34.393a10.003%2010.003%200%200%200-14.142%200l-7.072%207.071c-3.904%203.905-3.904%2010.237%200%2014.142l63.536%2063.536a9.97%209.97%200%200%200%207.071%202.929%209.97%209.97%200%200%200%207.071-2.929l63.536-63.536c3.905-3.905%203.905-10.237%200-14.141%22%2F%3E%3C%2Fsvg%3E);
+}
+.dropup .dropdown-toggle::after {
+  content: none;
+}
+.dropup .dropdown-toggle::before {
+  display: inline-block;
+  margin-right: 0.255em;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.3em solid;
+  border-left: 0.3em solid transparent;
 }
