@@ -36,7 +36,7 @@ const Controller = (function () {
                 this.#mediaCurrentlyPlaying = undefined
                 PubSub.publish(Σ._DESTROY_MEDIA_PLAYER_, { ...media })
             })
-
+            // WHEN NEXT
             this.onNext = PubSub.subscribe(Σ._NEXT_, (msg, model) => {
                 if (!model || !model.data || !model.data.songs || !model.data.orderedKeys || !model.cursor ) {
                     return

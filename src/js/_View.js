@@ -79,16 +79,8 @@ const View = (function () {
       this.onClick = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        PubSub.publish(Σ._CLICKED_, null)
-
-        /* if (!this.model.active) { */
-        this.model.active = true
         const dat = this.model.data.songs[this.model.data.orderedKeys[this.model.cursor.index]].media[0]
-
-        PubSub.publish(Σ._START_, dat)
-        /* } else {
-          this.model.active = false
-        } */
+        PubSub.publish(Σ._CLICKED_, dat)
       }
       this.cursor.addEventListener('click', this.onClick);
       this.resetCursor.addEventListener('click', this.model.cursor.reset);

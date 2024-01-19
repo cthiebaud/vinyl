@@ -58,8 +58,6 @@ const Model = (function () {
 
     class PlayList {
 
-        // #active = false
-
         constructor(datafile) {
 
             this.order = 'chronological'
@@ -107,7 +105,6 @@ const Model = (function () {
                                 default:
                                     break;
                             }
-                            // console.log(key, m, media)
                         }
                     }
                     this.sortKeys()
@@ -188,16 +185,6 @@ const Model = (function () {
         findPositionInOrderedKeys(key) {
             return this.data.orderedKeys.indexOf(key);
         }
-        
-        /*
-        get active() {
-            return this.#active
-        }
- 
-        set active(active) {
-            this.#active = active
-        }
-        */
 
     }
 
