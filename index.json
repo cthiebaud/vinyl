@@ -1,32 +1,45 @@
 {
   "id": "",
   "copyright": "",
-  "navbarheader": "",
-  "brandlink": "",
-  "icon": "",
-  "background": "",
-  "background_animated": "",
-  "order": ["example"],
+  "github": "",
+  "brandLogoSVG": ["/vinyl_record.svg", "/vinyl_record-rotating.svg"],
+  "orderedKeys": [
+    "brouillard",
+    "larme"
+  ],
+  "later": ["whatever"],
   "songs": {
-    "example": {
+    "larme": {
+      "date": "",
       "text": "",
-      "duration": "0:00",
-      "watch": [
+      "duration": "",
+      "media": [
         {
+          "type": "sound",
           "url": "",
           "id": "",
           "title": ""
         }
-      ],
-      "listen": [
+      ]
+    },
+    "brouillard": {
+      "date": "",
+      "text": "",
+      "duration": "",
+      "media": [
         {
+          "type": "video",
+          "url": "",
+          "id": "",
+          "title": ""
+        },
+        {
+          "type": "video",
           "url": "",
           "id": "",
           "title": ""
         }
-      ],
-      "markdown": "",
-      "instagram": true
+      ]
     }
   }
 }
