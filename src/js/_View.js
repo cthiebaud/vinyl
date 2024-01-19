@@ -81,14 +81,14 @@ const View = (function () {
         e.stopPropagation();
         PubSub.publish(Σ._CLICKED_, null)
 
-        if (!this.model.active) {
-          this.model.active = true
-          const dat = this.model.data.songs[this.model.data.orderedKeys[this.model.cursor.index]].media[0]
+        /* if (!this.model.active) { */
+        this.model.active = true
+        const dat = this.model.data.songs[this.model.data.orderedKeys[this.model.cursor.index]].media[0]
 
-          PubSub.publish(Σ._START_, dat)
-        } else {
+        PubSub.publish(Σ._START_, dat)
+        /* } else {
           this.model.active = false
-        }
+        } */
       }
       this.cursor.addEventListener('click', this.onClick);
       this.resetCursor.addEventListener('click', this.model.cursor.reset);
@@ -426,6 +426,11 @@ const View = (function () {
             behavior: 'smooth', // You can use 'auto' for instant scrolling
             block: 'start',     // You can use 'end' or 'center' as well
           });
+
+
+          const key = this.model.findSongByMediaId(data.id)
+          const pos = this.model.findPositionInOrderedKeys(key)
+          this.model.cursor.index = pos
         }
         this.tokenOnStart = PubSub.subscribe(Σ._START_, this.onStart)
 

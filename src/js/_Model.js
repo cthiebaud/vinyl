@@ -58,7 +58,7 @@ const Model = (function () {
 
     class PlayList {
 
-        #active = false
+        // #active = false
 
         constructor(datafile) {
 
@@ -170,13 +170,34 @@ const Model = (function () {
             return keys
         }
 
+        findSongByMediaId = (mediaId) => {
+            const songs = this.data.songs || {};
+
+            for (const [songKey, songValue] of Object.entries(songs)) {
+                const mediaItems = songValue.media || [];
+
+                for (const mediaItem of mediaItems) {
+                    if (mediaItem.id === mediaId) {
+                        return songKey;
+                    }
+                }
+            }
+            return null;
+        }
+
+        findPositionInOrderedKeys(key) {
+            return this.data.orderedKeys.indexOf(key);
+        }
+        
+        /*
         get active() {
             return this.#active
         }
-
+ 
         set active(active) {
             this.#active = active
         }
+        */
 
     }
 

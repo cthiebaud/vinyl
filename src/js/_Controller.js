@@ -38,7 +38,7 @@ const Controller = (function () {
             })
 
             this.onNext = PubSub.subscribe(Σ._NEXT_, (msg, model) => {
-                if (!model || !model.data.songs || !model.cursor || !model.active) {
+                if (!model || !model.data || !model.data.songs || !model.data.orderedKeys || !model.cursor ) {
                     return
                 }
                 model.cursor.next()
