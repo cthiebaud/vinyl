@@ -378,16 +378,16 @@ const View = (function () {
           if (widgetIframe) {
             const widget = SC.Widget(widgetIframe)
             if (widget) {
-              widget.bind(SC.Widget.Events.READY, function () {
-                widget.bind(SC.Widget.Events.PLAY, function () {
+              widget.bind(SC.Widget.Events.READY, () => {
+                widget.bind(SC.Widget.Events.PLAY, () => {
                   console.log("soundcloud play")
                   PubSub.publish(Σ._ONPLAY_, null) // soundcloud
                 })
-                widget.bind(SC.Widget.Events.PAUSE, function () {
+                widget.bind(SC.Widget.Events.PAUSE, () => {
                   console.log("soundcloud pause")
                   PubSub.publish(Σ._ONPAUSE_, null) // soundcloud
                 })
-                widget.bind(SC.Widget.Events.FINISH, function () {
+                widget.bind(SC.Widget.Events.FINISH, () => {
                   PubSub.publish(Σ._NEXT_, this.model) // soundcloud
                   console.log("soundcloud finish")
                 })
