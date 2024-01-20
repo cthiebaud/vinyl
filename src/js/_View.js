@@ -23,14 +23,14 @@ const View = (function () {
     #element
     constructor(element, brandLogoImages) {
       this.#element = element
-      this.#element.dataset.brandLogoImage = brandLogoImages[0];
-      this.#element.dataset.brandLogoImagePlaying = brandLogoImages[1];
-      this.#element.src = this.#element.dataset.brandLogoImage;
+      this.#element.dataset.brandLogoImage = brandLogoImages[0]
+      this.#element.dataset.brandLogoImagePlaying = brandLogoImages[1]
+      this.#element.src = this.#element.dataset.brandLogoImage
 
-      this.tokenOnPlay = PubSub.subscribe(Σ._ONPLAY_, (msg, media) => {
+      this.tokenOnPlay = PubSub.subscribe(Σ._PLAY_, (msg, media) => {
         this.rotating = true
       })
-      this.tokenOnPause = PubSub.subscribe(Σ._ONPAUSE_, (msg, media) => {
+      this.tokenOnPause = PubSub.subscribe(Σ._PAUSE_, (msg, media) => {
         this.rotating = false
       })
       this.tokenStop = PubSub.subscribe(Σ._STOP_, (msg, media) => {
@@ -50,14 +50,14 @@ const View = (function () {
 
     set rotating(rotating) {
       if (rotating) {
-        this.#element.src = this.#element.dataset.brandLogoImagePlaying;
+        this.#element.src = this.#element.dataset.brandLogoImagePlaying
       } else {
-        this.#element.src = this.#element.dataset.brandLogoImage;
+        this.#element.src = this.#element.dataset.brandLogoImage
       }
     }
   }
 
-  class playListController {
+  class PlayListController {
     constructor() {
       this.model = undefined
 
@@ -77,25 +77,25 @@ const View = (function () {
       this.nextCursor = document.getElementById('nextCursor')
 
       this.onClick = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        e.preventDefault()
+        e.stopPropagation()
         const dat = this.model.data.songs[this.model.data.orderedKeys[this.model.cursor.index]].media[0]
         PubSub.publish(Σ._CLICKED_, dat)
       }
-      this.cursor.addEventListener('click', this.onClick);
-      this.resetCursor.addEventListener('click', this.model.cursor.reset);
-      this.prevCursor.addEventListener('click', this.model.cursor.prev);
-      this.nextCursor.addEventListener('click', this.model.cursor.next);
+      this.cursor.addEventListener('click', this.onClick)
+      this.resetCursor.addEventListener('click', this.model.cursor.reset)
+      this.prevCursor.addEventListener('click', this.model.cursor.prev)
+      this.nextCursor.addEventListener('click', this.model.cursor.next)
 
 
       this.cursor.innerHTML = this.model.cursor.index
     }
 
     close() {
-      this.cursor.removeEventListener("click", this.onClick);
-      this.resetCursor.removeEventListener('click', this.model.cursor.reset);
-      this.prevCursor.removeEventListener('click', this.model.cursor.prev);
-      this.nextCursor.removeEventListener('click', this.model.cursor.next);
+      this.cursor.removeEventListener("click", this.onClick)
+      this.resetCursor.removeEventListener('click', this.model.cursor.reset)
+      this.prevCursor.removeEventListener('click', this.model.cursor.prev)
+      this.nextCursor.removeEventListener('click', this.model.cursor.next)
 
       PubSub.unsubscribe(this.onCreateMediaPlayer), this.tokenNext = undefined
       PubSub.unsubscribe(this.onDestroyMediaPlayer), this.tokenNext = undefined
@@ -112,21 +112,21 @@ const View = (function () {
         video: undefined,
         sound: undefined,
       }
-      this.playListController = new playListController()
+      this.playListController = new PlayListController()
 
         // Fetch body
         ;
       (async () => {
         try {
-          const response = await fetch("/vinyl/body.html");
+          const response = await fetch("/vinyl/body.html")
           if (!response.ok) {
-            throw new Error(`Failed to fetch ${htmlfile}: ${response.status} - ${response.statusText}`);
+            throw new Error(`Failed to fetch ${htmlfile}: ${response.status} - ${response.statusText}`)
           }
-          const htmlContent = await response.text();
-          document.body.innerHTML = htmlContent;
-          PubSub.publish(Σ._VIEW_LOADED_, {});
+          const htmlContent = await response.text()
+          document.body.innerHTML = htmlContent
+          PubSub.publish(Σ._VIEW_LOADED_, {})
         } catch (error) {
-          alert(error);
+          alert(error)
         }
       })();
     }
@@ -178,8 +178,8 @@ const View = (function () {
         const buttonsWithKeyClass = document.querySelectorAll(`div.card [type='button'].${key}`)
         buttonsWithKeyClass.forEach((button) => {
           button.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault()
+            e.stopPropagation()
             // post to controller
             PubSub.publish(Σ._CLICKED_, {
               buttonId: button.id,
@@ -310,14 +310,14 @@ const View = (function () {
 
         // CREATE MEDIA PLAYER
         this.onCreateMediaPlayer = (msg, data) => {
-          // console.log(msg, data);
+          // console.log(msg, data)
 
           function getStyleAndAncestorCard(button) {
             const ancestorCard = button.closest(".card")
             const img = ancestorCard.querySelector("img")
-            const pos = img ? img.getBoundingClientRect() : { top: 0, left: 0 }
-            const oh = img ? img.offsetHeight : 0
-            const ow = img ? img.offsetWidth : 0
+            const pos = img ? img.getBoundingClientRect() : { top: 0, left: 0 };
+            const oh = img ? img.offsetHeight : 0;
+            const ow = img ? img.offsetWidth : 0;
 
             return {
               style: {
@@ -327,19 +327,19 @@ const View = (function () {
                 width: ow + "px",
                 height: oh + "px",
               },
-              ancestorCard: ancestorCard,
+              ancestorCard: ancestorCard
             }
           }
 
           const button = document.getElementById(data.buttonId)
-          button.innerHTML = "<span>close</span>"
+          button.innerHTML = "close"
           const styleAndancestorCard = getStyleAndAncestorCard(button)
           const temp = document.createElement('div')
           temp.innerHTML = this.templates[data.type]({
             id: data.id,
           })
           this.thePlayer = temp.firstElementChild
-          this.thePlayer.style.cssText = Object.keys(styleAndancestorCard.style).map(property => `${property}: ${styleAndancestorCard.style[property]}`).join(';');
+          this.thePlayer.style.cssText = Object.keys(styleAndancestorCard.style).map(property => `${property}: ${styleAndancestorCard.style[property]}`).join(';')
           styleAndancestorCard.ancestorCard.appendChild(this.thePlayer)
 
           // vidstack
@@ -347,11 +347,11 @@ const View = (function () {
           if (player) {
             const playHandler = () => {
               console.log("vidstack play")
-              PubSub.publish(Σ._ONPLAY_, null) // vidstack
+              PubSub.publish(Σ._PLAY_, null) // vidstack
             }
             const pauseHandler = () => {
               console.log("vidstack pause")
-              PubSub.publish(Σ._ONPAUSE_, null) // vidstack
+              PubSub.publish(Σ._PAUSE_, null) // vidstack
             }
             const stopHandler = () => {
               console.log("vidstack stop")
@@ -378,11 +378,11 @@ const View = (function () {
               widget.bind(SC.Widget.Events.READY, () => {
                 widget.bind(SC.Widget.Events.PLAY, () => {
                   console.log("soundcloud play")
-                  PubSub.publish(Σ._ONPLAY_, null) // soundcloud
+                  PubSub.publish(Σ._PLAY_, null) // soundcloud
                 })
                 widget.bind(SC.Widget.Events.PAUSE, () => {
                   console.log("soundcloud pause")
-                  PubSub.publish(Σ._ONPAUSE_, null) // soundcloud
+                  PubSub.publish(Σ._PAUSE_, null) // soundcloud
                 })
                 widget.bind(SC.Widget.Events.FINISH, () => {
                   PubSub.publish(Σ._NEXT_, this.model) // soundcloud
@@ -397,7 +397,7 @@ const View = (function () {
 
         // DESTROY MEDIA PLAYER
         this.onDestroyMediaPlayer = (msg, data) => {
-          // console.log(msg, data);
+          // console.log(msg, data)
 
           if (typeof this.thePlayer !== 'undefined') {
             if (typeof this.thePlayer.destroy === "function") {
@@ -422,8 +422,7 @@ const View = (function () {
           ancestorCard.scrollIntoView({
             behavior: 'smooth', // You can use 'auto' for instant scrolling
             block: 'start',     // You can use 'end' or 'center' as well
-          });
-
+          })
 
           const key = this.model.findSongByMediaId(data.id)
           const pos = this.model.findPositionInOrderedKeys(key)
