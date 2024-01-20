@@ -13,7 +13,7 @@ const Controller = (function () {
             this.#mediaCurrentlyPlaying = undefined
             // WHEN CLICKED
             this.tokenClicked = PubSub.subscribe(Σ._CLICKED_, (msg, media) => {
-                console.log(msg, media);
+                console.log(msg, media)
                 if (this.#mediaCurrentlyPlaying) {
                     PubSub.publish(Σ._STOP_, { ...this.#mediaCurrentlyPlaying })
                 }
@@ -26,13 +26,13 @@ const Controller = (function () {
             })
             // WHEN STARTED
             this.tokenStart = PubSub.subscribe(Σ._START_, (msg, media) => {
-                console.log(msg, media);
+                console.log(msg, media)
                 this.#mediaCurrentlyPlaying = media
                 PubSub.publish(Σ._CREATE_MEDIA_PLAYER_, { ...media })
             })
             // WHEN STOPPED
             this.tokenStop = PubSub.subscribe(Σ._STOP_, (msg, media) => {
-                console.log(msg, media);
+                console.log(msg, media)
                 this.#mediaCurrentlyPlaying = undefined
                 PubSub.publish(Σ._DESTROY_MEDIA_PLAYER_, { ...media })
             })
