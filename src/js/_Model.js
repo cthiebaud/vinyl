@@ -10,28 +10,28 @@ const Model = (function () {
 
     class TimeDurationSum {
         constructor() {
-            this.totalHours = 0;
-            this.totalMinutes = 0;
-            this.totalSeconds = 0;
+            this.totalHours = 0
+            this.totalMinutes = 0
+            this.totalSeconds = 0
         }
 
         addDuration(duration) {
-            const [minutes, seconds] = duration.split(':');
-            this.totalMinutes += parseInt(minutes, 10);
-            this.totalSeconds += parseInt(seconds, 10);
+            const [minutes, seconds] = duration.split(':')
+            this.totalMinutes += parseInt(minutes, 10)
+            this.totalSeconds += parseInt(seconds, 10)
 
-            this.totalHours += Math.floor(this.totalMinutes / 60);
-            this.totalMinutes %= 60;
+            this.totalHours += Math.floor(this.totalMinutes / 60)
+            this.totalMinutes %= 60
 
-            this.totalMinutes += Math.floor(this.totalSeconds / 60);
-            this.totalSeconds %= 60;
+            this.totalMinutes += Math.floor(this.totalSeconds / 60)
+            this.totalSeconds %= 60
         }
 
         getTotalDuration() {
             if (this.totalHours > 0) {
-                return `${String(this.totalHours).padStart(2, '0')}:${String(this.totalMinutes).padStart(2, '0')}:${String(this.totalSeconds).padStart(2, '0')}`;
+                return `${String(this.totalHours).padStart(2, '0')}:${String(this.totalMinutes).padStart(2, '0')}:${String(this.totalSeconds).padStart(2, '0')}`
             } else {
-                return `${String(this.totalMinutes).padStart(2, '0')}:${String(this.totalSeconds).padStart(2, '0')}`;
+                return `${String(this.totalMinutes).padStart(2, '0')}:${String(this.totalSeconds).padStart(2, '0')}`
             }
         }
     }
@@ -91,18 +91,18 @@ const Model = (function () {
             this.order = 'chronological'
             this.inverse = true
             this.data = undefined
-            this.totalDuration = new TimeDurationSum();
+            this.totalDuration = new TimeDurationSum()
 
                 // Fetch data
                 ;
             (async () => {
                 try {
-                    const response = await fetch(datafile);
+                    const response = await fetch(datafile)
                     if (!response.ok) {
-                        throw new Error(`Failed to fetch ${datafile}: ${response.status} - ${response.statusText}`);
+                        throw new Error(`Failed to fetch ${datafile}: ${response.status} - ${response.statusText}`)
                     }
-                    this.data = await response.json();
-                    PubSub.publish(Σ._MODEL_LOADED_, this.data);
+                    this.data = await response.json()
+                    PubSub.publish(Σ._MODEL_LOADED_, this.data)
                     for (const key in this.data.songs) {
                         const song = this.data.songs[key]
                         song.key = key
@@ -125,14 +125,14 @@ const Model = (function () {
                             switch (media.type) {
                                 case 'video':
                                     media.label = 'watch'
-                                    break;
+                                    break
 
                                 case 'sound':
                                     media.label = 'listen'
-                                    break;
+                                    break
 
                                 default:
-                                    break;
+                                    break
                             }
                             // only add first media
                         }
@@ -141,7 +141,7 @@ const Model = (function () {
                     this.sortKeys()
                     this.cursor = new Cursor(this.data.orderedKeys.length)
                 } catch (error) {
-                    alert(error);
+                    alert(error)
                 }
             })();
         }
@@ -199,22 +199,22 @@ const Model = (function () {
         }
 
         findSongByMediaId = (mediaId) => {
-            const songs = this.data.songs || {};
+            const songs = this.data.songs || {}
 
             for (const [songKey, songValue] of Object.entries(songs)) {
-                const mediaItems = songValue.media || [];
+                const mediaItems = songValue.media || []
 
                 for (const mediaItem of mediaItems) {
                     if (mediaItem.id === mediaId) {
-                        return songKey;
+                        return songKey
                     }
                 }
             }
-            return null;
+            return null
         }
 
         findPositionInOrderedKeys(key) {
-            return this.data.orderedKeys.indexOf(key);
+            return this.data.orderedKeys.indexOf(key)
         }
 
     }
