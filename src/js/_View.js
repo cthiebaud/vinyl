@@ -235,6 +235,11 @@ const View = (function () {
         const htmlElement = document.querySelector('html')
         const sortButton = document.getElementById('sort_button')
         const songsElement = document.getElementById('songs')
+        const totalDuration = document.getElementById('totalDuration')
+
+        if (totalDuration) {
+          totalDuration.innerHTML = this.model.totalDuration.getTotalDuration()
+        }
 
         if (data.github) {
           github.href = data.github

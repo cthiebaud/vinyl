@@ -8,6 +8,34 @@ const Model = (function () {
     // Private variables or functions
     const document = undefined // try to prevent model from using view stuff
 
+    class TimeDurationSum {
+        constructor() {
+            this.totalHours = 0;
+            this.totalMinutes = 0;
+            this.totalSeconds = 0;
+        }
+
+        addDuration(duration) {
+            const [minutes, seconds] = duration.split(':');
+            this.totalMinutes += parseInt(minutes, 10);
+            this.totalSeconds += parseInt(seconds, 10);
+
+            this.totalHours += Math.floor(this.totalMinutes / 60);
+            this.totalMinutes %= 60;
+
+            this.totalMinutes += Math.floor(this.totalSeconds / 60);
+            this.totalSeconds %= 60;
+        }
+
+        getTotalDuration() {
+            if (this.totalHours > 0) {
+                return `${String(this.totalHours).padStart(2, '0')}:${String(this.totalMinutes).padStart(2, '0')}:${String(this.totalSeconds).padStart(2, '0')}`;
+            } else {
+                return `${String(this.totalMinutes).padStart(2, '0')}:${String(this.totalSeconds).padStart(2, '0')}`;
+            }
+        }
+    }
+
     class Cursor {
         #displayCursor
         constructor(length) {
@@ -63,6 +91,7 @@ const Model = (function () {
             this.order = 'chronological'
             this.inverse = true
             this.data = undefined
+            this.totalDuration = new TimeDurationSum();
 
                 // Fetch data
                 ;
@@ -105,8 +134,10 @@ const Model = (function () {
                                 default:
                                     break;
                             }
+                            // only add first media
                         }
-                    }
+                        this.totalDuration.addDuration(song.duration)
+                }
                     this.sortKeys()
                     this.cursor = new Cursor(this.data.orderedKeys.length)
                 } catch (error) {
