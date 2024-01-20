@@ -13,7 +13,7 @@ window.addEventListener('beforeunload', function (event) {
     console.log("beforeunload!", model, model.close, view, view.close)
     if (model && model.close) model.close()
     if (view && view.close) view.close()
-    if (controller && controller.close()) controller.close() 
+    if (controller && controller.close) controller.close() 
 }, { once: true });
 
 document.addEventListener("DOMContentLoaded", function () {
