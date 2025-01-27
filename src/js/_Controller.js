@@ -1,4 +1,4 @@
-import PubSub from 'https://cdn.jsdelivr.net/npm/pubsub-js@1.9.4/+esm'
+import PubSub from 'https://cdn.jsdelivr.net/npm/pubsub-js@1.9.5/+esm'
 
 import { Symbols as Σ } from "./Symbols.js"
 

@@ -1,5 +1,5 @@
 import handlebars from 'https://cdn.jsdelivr.net/npm/handlebars@4.7.8/+esm'
-import PubSub from 'https://cdn.jsdelivr.net/npm/pubsub-js@1.9.4/+esm'
+import PubSub from 'https://cdn.jsdelivr.net/npm/pubsub-js@1.9.5/+esm'
 
 import { Symbols as Σ } from "./Symbols.js"
 import { ElementAnimator } from './ElementAnimator.js'
