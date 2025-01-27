@@ -219,7 +219,16 @@ const View = (function () {
       const data = model.data
       model.cursor.displayCursor = new CursorSpy().displayCursor
 
-      try {
+      {
+        const h1Element = document.getElementById("title");
+        if (document.title) {
+            h1Element.textContent = document.title;
+        } else {
+            h1Element.remove();
+        }
+    }
+    
+    try {
         // compile handlebars templates 
         Object.keys(this.templates).map((key) => {
           this.templates[key] = handlebars.compile(
