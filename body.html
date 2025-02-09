@@ -7,7 +7,7 @@
         <img id="vinyl_brand_svg" src="/vinyl/svgos/vinyl_icon.svg" title="Logo">
       </a>
 
-      <div id="playlist_switch" class="btn-group btn-group-sm" role="group" >
+      <div id="playlist_switch" class="btn-group btn-group-sm" role="group">
         <button id="resetCursor" class="btn btn-sm" style="padding-right: 0;">&lt;&lt;</button>
         <button id="prevCursor" class="btn btn-sm">&lt;</button>
         <div id="cursor">&nbsp;</div>
@@ -36,7 +36,7 @@
 <main>
 
   <h1 id="title" style="text-align: center;">&nbsp;</h1>
-  
+
   <div class="album py-3">
     <div class="container">
       <div id="songs" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 g-3">
@@ -66,6 +66,14 @@
   <media-provider></media-provider>
   <media-video-layout></media-video-layout>
 </media-player>
+</script>
+
+<script id="facebook-template" type="text/x-handlebars-template">
+  <media-player title="Facebook Video" playsinline>
+    <media-provider>
+      <iframe src="https://www.facebook.com/plugins/video.php?height=476&href={{encodedUrl}}&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+    </media-provider>
+  </media-player>
 </script>
 
 <script id="sound-template" type="text/x-handlebars-template">
@@ -137,9 +145,11 @@
           <div>
             <a type="button" style="height: 31px;" class="btn btn-sm btn-outline-secondary" href="{{media.0.url}}" target="_{{key}}">
               {{#if isVideo}}<span>
-                  <img style="height:67%; filter: brightness(3.2) grayscale(.925); width: auto; vertical-align: text-bottom;" src="/vinyl/svgos/youtube2.svg">
+                <img style="height:67%; filter: brightness(3.2) grayscale(0.5) contrast(1); width: auto; vertical-align: text-bottom;" src="/vinyl/svgos/youtube2.svg">
+              {{else if isFacebook}}<span>
+                  <img style="height:67%; filter: brightness(1.2) grayscale(0.33) contrast(0.5); width: auto; vertical-align: text-bottom;" src="/vinyl/svgos/facebook.svg">
               {{else if isSound}}<span>
-                  <img style="height:67%; filter: brightness(1.5) grayscale(.925); width: auto; vertical-align: text-bottom;" src="/vinyl/svgos/soundcloud-logo2.svg">
+                    <img style="height:67%; filter: brightness(1.5) grayscale(0.33) contrast(1); width: auto; vertical-align: text-bottom;" src="/vinyl/svgos/soundcloud-logo2.svg">
               {{/if}}
               </span>
             </a>

@@ -118,13 +118,15 @@ const Model = (function () {
                             return key + ".jpg"
                         })(key)
                         song.isVideo = (song.media.length > 0 && song.media[0].type === 'video')
+                        song.isFacebook = (song.media.length > 0 && song.media[0].type === 'facebook')
                         song.isSound = (song.media.length > 0 && song.media[0].type === 'sound')
                         for (const m in song.media) {
                             const media = song.media[m]
                             media.buttonId = `${media.type}_${media.id}`
                             switch (media.type) {
                                 case 'video':
-                                    media.label = 'watch'
+                                case 'facebook':
+                                        media.label = 'watch'
                                     break
 
                                 case 'sound':

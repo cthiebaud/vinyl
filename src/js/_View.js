@@ -111,6 +111,7 @@ const View = (function () {
         song: undefined,
         video: undefined,
         sound: undefined,
+        facebook: undefined,
       }
       this.playListController = new PlayListController()
 
