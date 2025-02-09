@@ -200,6 +200,7 @@ const View = (function () {
         const song = this.model.data.songs[key]
         // console.log(key, song)
         const songElement = document.createElement('div')
+        console.log(song)
         songElement.innerHTML = this.templates.song(song)
 
         parentElement.appendChild(songElement.firstElementChild)
